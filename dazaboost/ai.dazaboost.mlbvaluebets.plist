@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>ai.dazaboost.mlbvaluebets</string>
+
+    <!-- Polls every 10 min. In --pregame-window mode the app evaluates each game once,
+         ~25-35 min before first pitch (capturing the near-closing line), dedupes via
+         data/alerted.json, and Slacks only the qualifying +EV contrarian-dog bets.
+         Edit --bankroll to your number. -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>/Users/jake/Dropbox/sbx/notebook/dazaboost/mlb_value_bets.py</string>
+        <string>--pregame-window</string>
+        <string>35</string>
+        <string>--slack</string>
+        <string>--bankroll</string>
+        <string>1000</string>
+    </array>
+
+    <!-- so the app finds .env (SLACK_WEBHOOK_URL) and data/alerted.json -->
+    <key>WorkingDirectory</key>
+    <string>/Users/jake/Dropbox/sbx/notebook/dazaboost</string>
+
+    <!-- run every 10 minutes (off-hours polls are cheap no-ops: 0 games in window) -->
+    <key>StartInterval</key>
+    <integer>600</integer>
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>/Users/jake/Dropbox/sbx/notebook/dazaboost/data/mlbvaluebets.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/jake/Dropbox/sbx/notebook/dazaboost/data/mlbvaluebets.log</string>
+</dict>
+</plist>

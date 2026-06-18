@@ -1,0 +1,395 @@
+date,event,home,away,predictedWinner,actualWinner,winner_correct,predictedSpread,casinoSpread,casinoFavoredTeamName,predictedTotal,casinoTotal,kalshi_pick_close,kalshi_opp_close,kalshi_pick_result
+2026-06-17,KXMLBGAME-26JUN172140PITATH,Oakland Athletics,Pittsburgh Pirates,Pittsburgh Pirates,Pittsburgh Pirates,1,-4,1.5,Pittsburgh Pirates,8,10.5,0.555,0.455,yes
+2026-06-17,KXMLBGAME-26JUN172140BALSEA,Seattle Mariners,Baltimore Orioles,Seattle Mariners,Baltimore Orioles,0,2,-1.5,Seattle Mariners,6,7.5,0.555,0.455,no
+2026-06-17,KXMLBGAME-26JUN172005COLCHC,Chicago Cubs,Colorado Rockies,Chicago Cubs,Chicago Cubs,1,2,-1.5,Chicago Cubs,4,10,0.655,0.355,yes
+2026-06-17,KXMLBGAME-26JUN171940CLEMIL,Milwaukee Brewers,Cleveland Guardians,Milwaukee Brewers,Milwaukee Brewers,1,1,-1.5,Milwaukee Brewers,7,7.5,0.535,0.46499999999999997,yes
+2026-06-17,KXMLBGAME-26JUN171905CWSNYY,New York Yankees,Chicago White Sox,New York Yankees,New York Yankees,1,3,-1.5,New York Yankees,7,8.5,0.615,0.385,yes
+2026-06-17,KXMLBGAME-26JUN171915SFATL,Atlanta Braves,San Francisco Giants,Atlanta Braves,San Francisco Giants,0,2,,,6,,0.565,0.435,no
+2026-06-17,KXMLBGAME-26JUN171845TORBOS,Boston Red Sox,Toronto Blue Jays,Toronto Blue Jays,Toronto Blue Jays,1,-3,-1.5,Boston Red Sox,7,9.5,0.475,0.535,yes
+2026-06-17,KXMLBGAME-26JUN171540LAAAZ,Arizona Diamondbacks,Los Angeles Angels,Los Angeles Angels,Arizona Diamondbacks,0,-1,-1.5,Arizona Diamondbacks,5,9,0.385,0.615,no
+2026-06-17,KXMLBGAME-26JUN171510TBLAD,Los Angeles Dodgers,Tampa Bay Rays,Los Angeles Dodgers,Los Angeles Dodgers,1,1,-1.5,Los Angeles Dodgers,3,7,0.595,0.405,yes
+2026-06-17,KXMLBGAME-26JUN171410DETHOU,Houston Astros,Detroit Tigers,Detroit Tigers,Houston Astros,0,-1,1.5,Detroit Tigers,3,8.5,0.505,0.495,no
+2026-06-17,KXMLBGAME-26JUN171415SDSTL,St. Louis Cardinals,San Diego Padres,San Diego Padres,San Diego Padres,1,-2,-1.5,St. Louis Cardinals,6,10,0.455,0.545,yes
+2026-06-17,KXMLBGAME-26JUN171305MIAPHI,Philadelphia Phillies,Miami Marlins,Miami Marlins,Miami Marlins,1,-1,1.5,Miami Marlins,5,9.5,0.475,0.525,yes
+2026-06-17,KXMLBGAME-26JUN171305KCWSH,Washington Nationals,Kansas City Royals,Washington Nationals,Kansas City Royals,0,2,-1.5,Washington Nationals,8,10.5,0.555,0.455,no
+2026-06-17,KXMLBGAME-26JUN171240NYMCIN,Cincinnati Reds,New York Mets,New York Mets,New York Mets,1,-4,1.5,New York Mets,8,9,0.555,0.445,yes
+2026-06-16,KXMLBGAME-26JUN162210TBLAD,Los Angeles Dodgers,Tampa Bay Rays,Los Angeles Dodgers,Los Angeles Dodgers,1,2,-1.5,Los Angeles Dodgers,4,8,0.575,0.425,yes
+2026-06-16,KXMLBGAME-26JUN162140LAAAZ,Arizona Diamondbacks,Los Angeles Angels,Los Angeles Angels,Los Angeles Angels,1,-2,1.5,Los Angeles Angels,8,8.5,0.495,0.505,yes
+2026-06-16,KXMLBGAME-26JUN162140BALSEA,Seattle Mariners,Baltimore Orioles,Seattle Mariners,Seattle Mariners,1,1,-1.5,Seattle Mariners,3,7.5,0.585,0.415,yes
+2026-06-16,KXMLBGAME-26JUN162140PITATH,Oakland Athletics,Pittsburgh Pirates,Pittsburgh Pirates,Pittsburgh Pirates,1,-2,-1.5,Oakland Athletics,10,11,0.435,0.565,yes
+2026-06-16,KXMLBGAME-26JUN162005MINTEX,Texas Rangers,Minnesota Twins,Texas Rangers,Minnesota Twins,0,2,-1.5,Texas Rangers,6,8.5,0.545,0.455,no
+2026-06-16,KXMLBGAME-26JUN162005COLCHC,Chicago Cubs,Colorado Rockies,Chicago Cubs,Colorado Rockies,0,4,-1.5,Chicago Cubs,8,10,0.665,0.345,no
+2026-06-16,KXMLBGAME-26JUN162010DETHOU,Houston Astros,Detroit Tigers,Houston Astros,Houston Astros,1,2,-1.5,Houston Astros,8,8.5,0.615,0.385,yes
+2026-06-16,KXMLBGAME-26JUN161945SDSTL,St. Louis Cardinals,San Diego Padres,St. Louis Cardinals,St. Louis Cardinals,1,2,1.5,San Diego Padres,6,8,0.525,0.475,yes
+2026-06-16,KXMLBGAME-26JUN161940CLEMIL,Milwaukee Brewers,Cleveland Guardians,Cleveland Guardians,Milwaukee Brewers,0,-3,-1.5,Milwaukee Brewers,13,8,0.415,0.585,no
+2026-06-16,KXMLBGAME-26JUN161915SFATL,Atlanta Braves,San Francisco Giants,Atlanta Braves,San Francisco Giants,0,4,-1.5,Atlanta Braves,8,9,0.615,0.385,no
+2026-06-16,KXMLBGAME-26JUN161910NYMCIN,Cincinnati Reds,New York Mets,Cincinnati Reds,Cincinnati Reds,1,2,1.5,New York Mets,10,10,0.475,0.525,yes
+2026-06-16,KXMLBGAME-26JUN161905CWSNYY,New York Yankees,Chicago White Sox,New York Yankees,New York Yankees,1,1,-1.5,New York Yankees,3,8,0.575,0.425,yes
+2026-06-16,KXMLBGAME-26JUN161845TORBOS,Boston Red Sox,Toronto Blue Jays,Toronto Blue Jays,Toronto Blue Jays,1,-2,1.5,Toronto Blue Jays,4,7.5,0.525,0.475,yes
+2026-06-16,KXMLBGAME-26JUN161845KCWSH,Washington Nationals,Kansas City Royals,Kansas City Royals,Washington Nationals,0,-4,-1.5,Washington Nationals,8,8.5,0.445,0.565,no
+2026-06-16,KXMLBGAME-26JUN161840MIAPHI,Philadelphia Phillies,Miami Marlins,Philadelphia Phillies,Philadelphia Phillies,1,1,-1.5,Philadelphia Phillies,5,8.5,0.615,0.385,yes
+2026-06-15,KXMLBGAME-26JUN152210TBLAD,Los Angeles Dodgers,Tampa Bay Rays,Tampa Bay Rays,Los Angeles Dodgers,0,-3,-1.5,Los Angeles Dodgers,11,9.5,0.375,0.625,no
+2026-06-15,KXMLBGAME-26JUN152140LAAAZ,Arizona Diamondbacks,Los Angeles Angels,Los Angeles Angels,Arizona Diamondbacks,0,-3,-1.5,Arizona Diamondbacks,7,9,0.445,0.565,no
+2026-06-15,KXMLBGAME-26JUN152140PITATH,Oakland Athletics,Pittsburgh Pirates,Pittsburgh Pirates,Oakland Athletics,0,-1,-1.5,Oakland Athletics,7,10,0.46499999999999997,0.535,no
+2026-06-15,KXMLBGAME-26JUN152005COLCHC,Chicago Cubs,Colorado Rockies,Chicago Cubs,Chicago Cubs,1,4,-1.5,Chicago Cubs,10,9.5,0.665,0.335,yes
+2026-06-15,KXMLBGAME-26JUN152005MINTEX,Texas Rangers,Minnesota Twins,Minnesota Twins,Minnesota Twins,1,-1,-1.5,Texas Rangers,5,8.5,0.415,0.585,yes
+2026-06-15,KXMLBGAME-26JUN152010DETHOU,Houston Astros,Detroit Tigers,Detroit Tigers,Detroit Tigers,1,-1,-1.5,Houston Astros,3,9,0.475,0.525,yes
+2026-06-15,KXMLBGAME-26JUN151945SDSTL,St. Louis Cardinals,San Diego Padres,San Diego Padres,St. Louis Cardinals,0,-1,-1.5,St. Louis Cardinals,5,8.5,0.405,0.595,no
+2026-06-15,KXMLBGAME-26JUN151910NYMCIN,Cincinnati Reds,New York Mets,Cincinnati Reds,Cincinnati Reds,1,1,-1.5,Cincinnati Reds,3,9,0.555,0.445,yes
+2026-06-15,KXMLBGAME-26JUN151845KCWSH,Washington Nationals,Kansas City Royals,Washington Nationals,Washington Nationals,1,1,-1.5,Washington Nationals,7,9,0.555,0.445,yes
+2026-06-15,KXMLBGAME-26JUN151840MIAPHI,Philadelphia Phillies,Miami Marlins,Philadelphia Phillies,Philadelphia Phillies,1,3,-1.5,Philadelphia Phillies,5,8,0.645,0.355,yes
+2026-06-14,KXMLBGAME-26JUN141920TEXBOS,Boston Red Sox,Texas Rangers,Texas Rangers,Texas Rangers,1,-1,1.5,Texas Rangers,5,9.5,0.485,0.525,yes
+2026-06-14,KXMLBGAME-26JUN141607TBLAA,Los Angeles Angels,Tampa Bay Rays,Tampa Bay Rays,Tampa Bay Rays,1,-2,1.5,Tampa Bay Rays,8,9,0.535,0.46499999999999997,yes
+2026-06-14,KXMLBGAME-26JUN141510CHCSF,San Francisco Giants,Chicago Cubs,Chicago Cubs,San Francisco Giants,0,-1,-1.5,San Francisco Giants,3,8.5,0.455,0.555,no
+2026-06-14,KXMLBGAME-26JUN141505COLATH,Oakland Athletics,Colorado Rockies,Oakland Athletics,Colorado Rockies,0,2,-1.5,Oakland Athletics,10,14,0.645,0.355,no
+2026-06-14,KXMLBGAME-26JUN141410HOUKC,Kansas City Royals,Houston Astros,Houston Astros,Kansas City Royals,0,-2,1.5,Houston Astros,4,8.5,0.475,0.525,no
+2026-06-14,KXMLBGAME-26JUN141410STLMIN,Minnesota Twins,St. Louis Cardinals,St. Louis Cardinals,Minnesota Twins,0,-1,1.5,St. Louis Cardinals,5,9.5,0.495,0.505,no
+2026-06-14,KXMLBGAME-26JUN141410LADCWS,Chicago White Sox,Los Angeles Dodgers,Los Angeles Dodgers,Chicago White Sox,0,0,1.5,Los Angeles Dodgers,6,9.5,0.645,0.355,no
+2026-06-14,KXMLBGAME-26JUN141410PHIMIL,Milwaukee Brewers,Philadelphia Phillies,Milwaukee Brewers,Milwaukee Brewers,1,1,1.5,Philadelphia Phillies,3,7,0.46499999999999997,0.535,yes
+2026-06-14,KXMLBGAME-26JUN141337NYYTOR,Toronto Blue Jays,New York Yankees,New York Yankees,New York Yankees,1,-5,1.5,New York Yankees,7,8.5,0.545,0.455,yes
+2026-06-14,KXMLBGAME-26JUN141335SDBAL,Baltimore Orioles,San Diego Padres,San Diego Padres,San Diego Padres,1,-4,-1.5,Baltimore Orioles,8,10.5,0.445,0.565,yes
+2026-06-14,KXMLBGAME-26JUN141340ATLNYM,New York Mets,Atlanta Braves,Atlanta Braves,New York Mets,0,-1,-1.5,New York Mets,3,8.5,0.46499999999999997,0.535,no
+2026-06-14,KXMLBGAME-26JUN141340AZCIN,Cincinnati Reds,Arizona Diamondbacks,Cincinnati Reds,Arizona Diamondbacks,0,2,1.5,Arizona Diamondbacks,8,10,0.485,0.515,no
+2026-06-14,KXMLBGAME-26JUN141335SEAWSH,Washington Nationals,Seattle Mariners,Seattle Mariners,Washington Nationals,0,-2,1.5,Seattle Mariners,4,10.5,0.545,0.455,no
+2026-06-14,KXMLBGAME-26JUN141215MIAPIT,Pittsburgh Pirates,Miami Marlins,Pittsburgh Pirates,Miami Marlins,0,1,-1.5,Pittsburgh Pirates,3,7,0.595,0.415,no
+2026-06-13,KXMLBGAME-26JUN132207TBLAA,Los Angeles Angels,Tampa Bay Rays,Tampa Bay Rays,Los Angeles Angels,0,-3,1.5,Tampa Bay Rays,5,8,0.515,0.485,no
+2026-06-13,KXMLBGAME-26JUN132205COLATH,Oakland Athletics,Colorado Rockies,Oakland Athletics,Oakland Athletics,1,3,-1.5,Oakland Athletics,9,14.5,0.585,0.415,yes
+2026-06-13,KXMLBGAME-26JUN132205CHCSF,San Francisco Giants,Chicago Cubs,Chicago Cubs,Chicago Cubs,1,-1,1.5,Chicago Cubs,3,8,0.525,0.475,yes
+2026-06-13,KXMLBGAME-26JUN131910HOUKC,Kansas City Royals,Houston Astros,Houston Astros,Houston Astros,1,-2,-1.5,Kansas City Royals,6,9.5,0.455,0.555,yes
+2026-06-13,KXMLBGAME-26JUN131910PHIMIL,Milwaukee Brewers,Philadelphia Phillies,Milwaukee Brewers,Philadelphia Phillies,0,1,-1.5,Milwaukee Brewers,9,8.5,0.605,0.395,no
+2026-06-13,KXMLBGAME-26JUN131605SEAWSH,Washington Nationals,Seattle Mariners,Seattle Mariners,Washington Nationals,0,-2,1.5,Seattle Mariners,6,9,0.485,0.525,no
+2026-06-13,KXMLBGAME-26JUN131605SDBAL,Baltimore Orioles,San Diego Padres,San Diego Padres,San Diego Padres,1,-3,-1.5,Baltimore Orioles,7,10.5,0.475,0.525,yes
+2026-06-13,KXMLBGAME-26JUN131610TEXBOS,Boston Red Sox,Texas Rangers,Boston Red Sox,Boston Red Sox,1,1,-1.5,Boston Red Sox,3,7.5,0.535,0.46499999999999997,yes
+2026-06-13,KXMLBGAME-26JUN131605MIAPIT,Pittsburgh Pirates,Miami Marlins,Miami Marlins,Pittsburgh Pirates,0,-4,1.5,Miami Marlins,8,9.5,0.485,0.515,no
+2026-06-13,KXMLBGAME-26JUN131610LADCWS,Chicago White Sox,Los Angeles Dodgers,Los Angeles Dodgers,Los Angeles Dodgers,1,-3,1.5,Los Angeles Dodgers,5,8.5,0.655,0.345,yes
+2026-06-13,KXMLBGAME-26JUN131610ATLNYM,New York Mets,Atlanta Braves,Atlanta Braves,Atlanta Braves,1,-5,1.5,Atlanta Braves,7,8.5,0.495,0.515,yes
+2026-06-13,KXMLBGAME-26JUN131610AZCIN,Cincinnati Reds,Arizona Diamondbacks,Arizona Diamondbacks,Cincinnati Reds,0,-3,1.5,Arizona Diamondbacks,7,9.5,0.575,0.425,no
+2026-06-13,KXMLBGAME-26JUN131610DETCLE,Cleveland Guardians,Detroit Tigers,Detroit Tigers,Cleveland Guardians,0,-2,1.5,Detroit Tigers,6,7.5,0.565,0.435,no
+2026-06-13,KXMLBGAME-26JUN131507NYYTOR,Toronto Blue Jays,New York Yankees,New York Yankees,New York Yankees,1,-1,1.5,New York Yankees,5,7.5,0.525,0.475,yes
+2026-06-13,KXMLBGAME-26JUN131410STLMIN,Minnesota Twins,St. Louis Cardinals,St. Louis Cardinals,St. Louis Cardinals,1,-1,1.5,St. Louis Cardinals,7,9.5,0.515,0.495,yes
+2026-06-12,KXMLBGAME-26JUN122215CHCSF,San Francisco Giants,Chicago Cubs,San Francisco Giants,Chicago Cubs,0,1,-1.5,San Francisco Giants,7,8.5,0.545,0.46499999999999997,no
+2026-06-12,KXMLBGAME-26JUN122205COLATH,Oakland Athletics,Colorado Rockies,Oakland Athletics,Oakland Athletics,1,4,-1.5,Oakland Athletics,6,14,0.665,0.335,yes
+2026-06-12,KXMLBGAME-26JUN122138TBLAA,Los Angeles Angels,Tampa Bay Rays,Tampa Bay Rays,Los Angeles Angels,0,-2,1.5,Tampa Bay Rays,4,9,0.605,0.405,no
+2026-06-12,KXMLBGAME-26JUN122010HOUKC,Kansas City Royals,Houston Astros,Houston Astros,Houston Astros,1,-1,1.5,Houston Astros,5,9.5,0.505,0.495,yes
+2026-06-12,KXMLBGAME-26JUN122010STLMIN,Minnesota Twins,St. Louis Cardinals,Minnesota Twins,Minnesota Twins,1,4,-1.5,Minnesota Twins,6,9,0.555,0.445,yes
+2026-06-12,KXMLBGAME-26JUN121937NYYTOR,Toronto Blue Jays,New York Yankees,New York Yankees,Toronto Blue Jays,0,-3,-1.5,Toronto Blue Jays,5,8,0.495,0.515,no
+2026-06-12,KXMLBGAME-26JUN121940PHIMIL,Milwaukee Brewers,Philadelphia Phillies,Milwaukee Brewers,Milwaukee Brewers,1,3,-1.5,Milwaukee Brewers,7,7.5,0.685,0.315,yes
+2026-06-12,KXMLBGAME-26JUN121940LADCWS,Chicago White Sox,Los Angeles Dodgers,Los Angeles Dodgers,Chicago White Sox,0,-5,1.5,Los Angeles Dodgers,7,9,0.585,0.415,no
+2026-06-12,KXMLBGAME-26JUN121910DETCLE,Cleveland Guardians,Detroit Tigers,Cleveland Guardians,Cleveland Guardians,1,1,1.5,Detroit Tigers,5,8.5,0.535,0.475,yes
+2026-06-12,KXMLBGAME-26JUN121915ATLNYM,New York Mets,Atlanta Braves,Atlanta Braves,New York Mets,0,-2,-1.5,New York Mets,4,8,0.46499999999999997,0.535,no
+2026-06-12,KXMLBGAME-26JUN121910TEXBOS,Boston Red Sox,Texas Rangers,Boston Red Sox,Boston Red Sox,1,1,-1.5,Boston Red Sox,5,8.5,0.555,0.455,yes
+2026-06-12,KXMLBGAME-26JUN121905SDBAL,Baltimore Orioles,San Diego Padres,Baltimore Orioles,Baltimore Orioles,1,1,-1.5,Baltimore Orioles,9,9.5,0.545,0.455,yes
+2026-06-12,KXMLBGAME-26JUN121915AZCIN,Cincinnati Reds,Arizona Diamondbacks,Arizona Diamondbacks,Arizona Diamondbacks,1,-1,1.5,Arizona Diamondbacks,5,10,0.495,0.515,yes
+2026-06-12,KXMLBGAME-26JUN121840MIAPIT,Pittsburgh Pirates,Miami Marlins,Pittsburgh Pirates,Miami Marlins,0,4,-1.5,Pittsburgh Pirates,8,8.5,0.565,0.435,no
+2026-06-12,KXMLBGAME-26JUN121845SEAWSH,Washington Nationals,Seattle Mariners,Seattle Mariners,Seattle Mariners,1,-2,1.5,Seattle Mariners,6,9.5,0.565,0.435,yes
+2026-06-11,KXMLBGAME-26JUN111940ATLCWS,Chicago White Sox,Atlanta Braves,Atlanta Braves,Atlanta Braves,1,-4,1.5,Atlanta Braves,8,8.5,0.525,0.485,scalar
+2026-06-11,KXMLBGAME-26JUN111905SEABAL,Baltimore Orioles,Seattle Mariners,Seattle Mariners,Baltimore Orioles,0,-1,1.5,Seattle Mariners,7,8.5,0.515,0.495,no
+2026-06-11,KXMLBGAME-26JUN111840LADPIT,Pittsburgh Pirates,Los Angeles Dodgers,Los Angeles Dodgers,Los Angeles Dodgers,1,-5,1.5,Los Angeles Dodgers,7,9.5,0.615,0.385,yes
+2026-06-11,KXMLBGAME-26JUN111510CHCCOL,Colorado Rockies,Chicago Cubs,Chicago Cubs,Chicago Cubs,1,-1,1.5,Chicago Cubs,9,11,0.585,0.425,yes
+2026-06-11,KXMLBGAME-26JUN111410TEXKC,Kansas City Royals,Texas Rangers,Texas Rangers,Texas Rangers,1,-2,1.5,Texas Rangers,4,10.5,0.485,0.515,yes
+2026-06-11,KXMLBGAME-26JUN111310MINDET,Detroit Tigers,Minnesota Twins,Minnesota Twins,Detroit Tigers,0,-1,-1.5,Detroit Tigers,7,9.5,0.46499999999999997,0.545,no
+2026-06-11,KXMLBGAME-26JUN111310STLNYM,New York Mets,St. Louis Cardinals,New York Mets,New York Mets,1,1,-1.5,New York Mets,3,9,0.575,0.425,yes
+2026-06-11,KXMLBGAME-26JUN111310AZMIA,Miami Marlins,Arizona Diamondbacks,Miami Marlins,Miami Marlins,1,3,-1.5,Miami Marlins,5,8.5,0.535,0.46499999999999997,yes
+2026-06-10,KXMLBGAME-26JUN102138HOULAA,Los Angeles Angels,Houston Astros,Los Angeles Angels,Los Angeles Angels,1,3,1.5,Houston Astros,5,8.5,0.525,0.475,yes
+2026-06-10,KXMLBGAME-26JUN102105MILATH,Oakland Athletics,Milwaukee Brewers,Oakland Athletics,Oakland Athletics,1,2,1.5,Milwaukee Brewers,14,14.5,0.505,0.495,yes
+2026-06-10,KXMLBGAME-26JUN102040CHCCOL,Colorado Rockies,Chicago Cubs,Chicago Cubs,Colorado Rockies,0,-3,1.5,Chicago Cubs,13,12,0.615,0.385,no
+2026-06-10,KXMLBGAME-26JUN101940TEXKC,Kansas City Royals,Texas Rangers,Texas Rangers,Texas Rangers,1,-1,1.5,Texas Rangers,11,10,0.525,0.475,yes
+2026-06-10,KXMLBGAME-26JUN101940ATLCWS,Chicago White Sox,Atlanta Braves,Atlanta Braves,Chicago White Sox,0,-2,1.5,Atlanta Braves,4,7,0.575,0.425,no
+2026-06-10,KXMLBGAME-26JUN101910STLNYM,New York Mets,St. Louis Cardinals,New York Mets,St. Louis Cardinals,0,1,-1.5,New York Mets,3,8.5,0.555,0.445,no
+2026-06-10,KXMLBGAME-26JUN101907PHITOR,Toronto Blue Jays,Philadelphia Phillies,Philadelphia Phillies,Philadelphia Phillies,1,-2,1.5,Philadelphia Phillies,10,9,0.555,0.445,yes
+2026-06-10,KXMLBGAME-26JUN101840MINDET,Detroit Tigers,Minnesota Twins,Minnesota Twins,Minnesota Twins,1,-5,-1.5,Detroit Tigers,11,9.5,0.395,0.615,yes
+2026-06-10,KXMLBGAME-26JUN101840AZMIA,Miami Marlins,Arizona Diamondbacks,Arizona Diamondbacks,Miami Marlins,0,-1,1.5,Arizona Diamondbacks,9,8.5,0.515,0.485,no
+2026-06-10,KXMLBGAME-26JUN101835SEABAL,Baltimore Orioles,Seattle Mariners,Seattle Mariners,Baltimore Orioles,0,-4,1.5,Seattle Mariners,6,9,0.505,0.495,no
+2026-06-10,KXMLBGAME-26JUN101840LADPIT,Pittsburgh Pirates,Los Angeles Dodgers,Los Angeles Dodgers,Pittsburgh Pirates,0,-2,1.5,Los Angeles Dodgers,6,8.5,0.655,0.355,no
+2026-06-10,KXMLBGAME-26JUN101610CINSD,San Diego Padres,Cincinnati Reds,San Diego Padres,San Diego Padres,1,4,-1.5,San Diego Padres,8,8.5,0.595,0.405,yes
+2026-06-10,KXMLBGAME-26JUN101545WSHSF,San Francisco Giants,Washington Nationals,Washington Nationals,San Francisco Giants,0,-1,1.5,Washington Nationals,5,8.5,0.505,0.505,no
+2026-06-10,KXMLBGAME-26JUN101310NYYCLE,Cleveland Guardians,New York Yankees,New York Yankees,New York Yankees,1,-1,1.5,New York Yankees,7,7.5,0.485,0.515,yes
+2026-06-10,KXMLBGAME-26JUN101310BOSTB,Tampa Bay Rays,Boston Red Sox,Tampa Bay Rays,Tampa Bay Rays,1,2,-1.5,Tampa Bay Rays,6,7.5,0.595,0.405,yes
+2026-06-09,KXMLBGAME-26JUN092205MILATH,Oakland Athletics,Milwaukee Brewers,Milwaukee Brewers,Oakland Athletics,0,-5,1.5,Milwaukee Brewers,7,13.5,0.515,0.485,no
+2026-06-09,KXMLBGAME-26JUN092140CINSD,San Diego Padres,Cincinnati Reds,Cincinnati Reds,Cincinnati Reds,1,-1,1.5,Cincinnati Reds,5,7.5,0.545,0.455,yes
+2026-06-09,KXMLBGAME-26JUN092138HOULAA,Los Angeles Angels,Houston Astros,Los Angeles Angels,Los Angeles Angels,1,3,1.5,Houston Astros,7,8.5,0.46499999999999997,0.535,yes
+2026-06-09,KXMLBGAME-26JUN092145WSHSF,San Francisco Giants,Washington Nationals,Washington Nationals,Washington Nationals,1,-1,1.5,Washington Nationals,9,8.5,0.505,0.495,yes
+2026-06-09,KXMLBGAME-26JUN092040CHCCOL,Colorado Rockies,Chicago Cubs,Chicago Cubs,Colorado Rockies,0,-3,1.5,Chicago Cubs,9,12.5,0.595,0.405,no
+2026-06-09,KXMLBGAME-26JUN091940ATLCWS,Chicago White Sox,Atlanta Braves,Atlanta Braves,Chicago White Sox,0,-1,1.5,Atlanta Braves,5,9,0.585,0.415,no
+2026-06-09,KXMLBGAME-26JUN091940TEXKC,Kansas City Royals,Texas Rangers,Texas Rangers,Kansas City Royals,0,-1,1.5,Texas Rangers,3,9.5,0.535,0.46499999999999997,no
+2026-06-09,KXMLBGAME-26JUN091910STLNYM,New York Mets,St. Louis Cardinals,New York Mets,St. Louis Cardinals,0,1,-1.5,New York Mets,3,8,0.545,0.455,no
+2026-06-09,KXMLBGAME-26JUN091907PHITOR,Toronto Blue Jays,Philadelphia Phillies,Toronto Blue Jays,Toronto Blue Jays,1,1,1.5,Philadelphia Phillies,5,7,0.505,0.495,yes
+2026-06-09,KXMLBGAME-26JUN091840AZMIA,Miami Marlins,Arizona Diamondbacks,Miami Marlins,Miami Marlins,1,2,-1.5,Miami Marlins,6,8,0.575,0.425,yes
+2026-06-09,KXMLBGAME-26JUN091835SEABAL,Baltimore Orioles,Seattle Mariners,Seattle Mariners,Seattle Mariners,1,-4,1.5,Seattle Mariners,8,8.5,0.525,0.475,yes
+2026-06-09,KXMLBGAME-26JUN091840BOSTB,Tampa Bay Rays,Boston Red Sox,Tampa Bay Rays,Tampa Bay Rays,1,4,1.5,Boston Red Sox,6,7.5,0.475,0.525,yes
+2026-06-09,KXMLBGAME-26JUN091840NYYCLE,Cleveland Guardians,New York Yankees,New York Yankees,New York Yankees,1,-3,1.5,New York Yankees,7,8.5,0.525,0.475,yes
+2026-06-09,KXMLBGAME-26JUN091840MINDET,Detroit Tigers,Minnesota Twins,Detroit Tigers,Detroit Tigers,1,1,-1.5,Detroit Tigers,9,8.5,0.545,0.455,yes
+2026-06-09,KXMLBGAME-26JUN091840LADPIT,Pittsburgh Pirates,Los Angeles Dodgers,Pittsburgh Pirates,Los Angeles Dodgers,0,2,1.5,Los Angeles Dodgers,8,8.5,0.515,0.485,no
+2026-06-08,KXMLBGAME-26JUN082205MILATH,Oakland Athletics,Milwaukee Brewers,Milwaukee Brewers,Milwaukee Brewers,1,-3,1.5,Milwaukee Brewers,7,11,0.585,0.415,yes
+2026-06-08,KXMLBGAME-26JUN082138HOULAA,Los Angeles Angels,Houston Astros,Houston Astros,Houston Astros,1,-3,1.5,Houston Astros,7,9.5,0.545,0.455,yes
+2026-06-08,KXMLBGAME-26JUN082145WSHSF,San Francisco Giants,Washington Nationals,Washington Nationals,Washington Nationals,1,-2,-1.5,San Francisco Giants,6,8,0.415,0.585,yes
+2026-06-08,KXMLBGAME-26JUN082140CINSD,San Diego Padres,Cincinnati Reds,Cincinnati Reds,San Diego Padres,0,-1,-1.5,San Diego Padres,5,7.5,0.445,0.56,no
+2026-06-08,KXMLBGAME-26JUN081907PHITOR,Toronto Blue Jays,Philadelphia Phillies,Philadelphia Phillies,Philadelphia Phillies,1,-1,1.5,Philadelphia Phillies,5,7,0.615,0.385,yes
+2026-06-08,KXMLBGAME-26JUN081840BOSTB,Tampa Bay Rays,Boston Red Sox,Boston Red Sox,Tampa Bay Rays,0,-3,1.5,Boston Red Sox,5,8,0.505,0.495,no
+2026-06-08,KXMLBGAME-26JUN081835SEABAL,Baltimore Orioles,Seattle Mariners,Seattle Mariners,Seattle Mariners,1,-3,1.5,Seattle Mariners,5,9.5,0.535,0.46499999999999997,yes
+2026-06-08,KXMLBGAME-26JUN081840NYYCLE,Cleveland Guardians,New York Yankees,New York Yankees,New York Yankees,1,-1,-1.5,Cleveland Guardians,3,7.5,0.46499999999999997,0.545,yes
+2026-06-07,KXMLBGAME-26JUN072030SFCHC,Chicago Cubs,San Francisco Giants,Chicago Cubs,San Francisco Giants,0,2,-1.5,Chicago Cubs,10,8.5,0.535,0.46499999999999997,no
+2026-06-07,KXMLBGAME-26JUN071610NYMSD,San Diego Padres,New York Mets,New York Mets,New York Mets,1,-4,1.5,New York Mets,6,7.5,0.505,0.495,yes
+2026-06-07,KXMLBGAME-26JUN071610LAALAD,Los Angeles Dodgers,Los Angeles Angels,Los Angeles Dodgers,Los Angeles Angels,0,1,-1.5,Los Angeles Dodgers,3,8.5,0.695,0.305,no
+2026-06-07,KXMLBGAME-26JUN071515WSHAZ,Arizona Diamondbacks,Washington Nationals,Arizona Diamondbacks,Arizona Diamondbacks,1,1,-1.5,Arizona Diamondbacks,5,8,0.555,0.445,yes
+2026-06-07,KXMLBGAME-26JUN071510MILCOL,Colorado Rockies,Milwaukee Brewers,Milwaukee Brewers,Milwaukee Brewers,1,-7,1.5,Milwaukee Brewers,9,11.5,0.625,0.375,yes
+2026-06-07,KXMLBGAME-26JUN071435CLETEX,Texas Rangers,Cleveland Guardians,Texas Rangers,Texas Rangers,1,1,-1.5,Texas Rangers,5,7,0.565,0.435,yes
+2026-06-07,KXMLBGAME-26JUN071410KCMIN,Minnesota Twins,Kansas City Royals,Kansas City Royals,Kansas City Royals,1,-2,1.5,Kansas City Royals,6,8.5,0.515,0.485,yes
+2026-06-07,KXMLBGAME-26JUN071415CINSTL,St. Louis Cardinals,Cincinnati Reds,St. Louis Cardinals,St. Louis Cardinals,1,1,-1.5,St. Louis Cardinals,11,9.5,0.565,0.435,yes
+2026-06-07,KXMLBGAME-26JUN071410ATHHOU,Houston Astros,Oakland Athletics,Oakland Athletics,Oakland Athletics,1,-2,1.5,Oakland Athletics,8,9,0.495,0.505,yes
+2026-06-07,KXMLBGAME-26JUN071335BOSNYY,New York Yankees,Boston Red Sox,New York Yankees,New York Yankees,1,1,-1.5,New York Yankees,3,8,0.575,0.425,yes
+2026-06-07,KXMLBGAME-26JUN071335PITATL,Atlanta Braves,Pittsburgh Pirates,Atlanta Braves,Atlanta Braves,1,1,-1.5,Atlanta Braves,5,8.5,0.575,0.425,yes
+2026-06-07,KXMLBGAME-26JUN071337BALTOR,Toronto Blue Jays,Baltimore Orioles,Toronto Blue Jays,Toronto Blue Jays,1,1,-1.5,Toronto Blue Jays,7,8,0.555,0.445,yes
+2026-06-07,KXMLBGAME-26JUN071340SEADET,Detroit Tigers,Seattle Mariners,Seattle Mariners,Detroit Tigers,0,-3,1.5,Seattle Mariners,7,8.5,0.485,0.515,no
+2026-06-07,KXMLBGAME-26JUN071335CWSPHI,Philadelphia Phillies,Chicago White Sox,Philadelphia Phillies,Philadelphia Phillies,1,4,-1.5,Philadelphia Phillies,12,9,0.615,0.385,yes
+2026-06-07,KXMLBGAME-26JUN071340TBMIA,Miami Marlins,Tampa Bay Rays,Tampa Bay Rays,Miami Marlins,0,-1,1.5,Tampa Bay Rays,5,7.5,0.505,0.495,no
+2026-06-06,KXMLBGAME-26JUN062210NYMSD,San Diego Padres,New York Mets,New York Mets,San Diego Padres,0,-1,1.5,New York Mets,7,7.5,0.535,0.46499999999999997,no
+2026-06-06,KXMLBGAME-26JUN062210LAALAD,Los Angeles Dodgers,Los Angeles Angels,Los Angeles Dodgers,Los Angeles Dodgers,1,2,-1.5,Los Angeles Dodgers,6,8.5,0.765,0.235,yes
+2026-06-06,KXMLBGAME-26JUN062110MILCOL,Colorado Rockies,Milwaukee Brewers,Milwaukee Brewers,Milwaukee Brewers,1,-4,1.5,Milwaukee Brewers,8,11,0.725,0.275,yes
+2026-06-06,KXMLBGAME-26JUN061935BOSNYY,New York Yankees,Boston Red Sox,New York Yankees,Boston Red Sox,0,1,1.5,Boston Red Sox,3,8.5,0.515,0.485,scalar
+2026-06-06,KXMLBGAME-26JUN061935CLETEX,Texas Rangers,Cleveland Guardians,Texas Rangers,Cleveland Guardians,0,1,-1.5,Texas Rangers,7,7.5,0.535,0.475,no
+2026-06-06,KXMLBGAME-26JUN061610PITATL,Atlanta Braves,Pittsburgh Pirates,Atlanta Braves,Atlanta Braves,1,4,1.5,Pittsburgh Pirates,6,8,0.505,0.495,yes
+2026-06-06,KXMLBGAME-26JUN061610WSHAZ,Arizona Diamondbacks,Washington Nationals,Arizona Diamondbacks,Washington Nationals,0,1,-1.5,Arizona Diamondbacks,9,9,0.585,0.415,no
+2026-06-06,KXMLBGAME-26JUN061605CWSPHI,Philadelphia Phillies,Chicago White Sox,Chicago White Sox,Chicago White Sox,1,-2,-1.5,Philadelphia Phillies,6,10,0.445,0.555,yes
+2026-06-06,KXMLBGAME-26JUN061610ATHHOU,Houston Astros,Oakland Athletics,Oakland Athletics,Houston Astros,0,-4,-1.5,Houston Astros,10,9.5,0.46499999999999997,0.545,no
+2026-06-06,KXMLBGAME-26JUN061610TBMIA,Miami Marlins,Tampa Bay Rays,Miami Marlins,Miami Marlins,1,1,1.5,Tampa Bay Rays,9,7.5,0.455,0.545,yes
+2026-06-06,KXMLBGAME-26JUN061507BALTOR,Toronto Blue Jays,Baltimore Orioles,Toronto Blue Jays,Toronto Blue Jays,1,1,1.5,Baltimore Orioles,7,8.5,0.515,0.485,yes
+2026-06-06,KXMLBGAME-26JUN061420SFCHC,Chicago Cubs,San Francisco Giants,Chicago Cubs,Chicago Cubs,1,2,-1.5,Chicago Cubs,4,7.5,0.585,0.415,yes
+2026-06-06,KXMLBGAME-26JUN061415CINSTL,St. Louis Cardinals,Cincinnati Reds,St. Louis Cardinals,St. Louis Cardinals,1,1,-1.5,St. Louis Cardinals,9,9,0.535,0.46499999999999997,yes
+2026-06-06,KXMLBGAME-26JUN061410KCMIN,Minnesota Twins,Kansas City Royals,Minnesota Twins,Kansas City Royals,0,2,-1.5,Minnesota Twins,4,8.5,0.575,0.425,no
+2026-06-06,KXMLBGAME-26JUN061310SEADET,Detroit Tigers,Seattle Mariners,Seattle Mariners,Seattle Mariners,1,-1,1.5,Seattle Mariners,5,9,0.545,0.46499999999999997,yes
+2026-06-05,KXMLBGAME-26JUN052210LAALAD,Los Angeles Dodgers,Los Angeles Angels,Los Angeles Dodgers,Los Angeles Dodgers,1,2,-1.5,Los Angeles Dodgers,6,8,0.645,0.365,yes
+2026-06-05,KXMLBGAME-26JUN052140NYMSD,San Diego Padres,New York Mets,San Diego Padres,New York Mets,0,1,-1.5,San Diego Padres,5,7,0.545,0.455,no
+2026-06-05,KXMLBGAME-26JUN052140WSHAZ,Arizona Diamondbacks,Washington Nationals,Washington Nationals,Washington Nationals,1,-2,-1.5,Arizona Diamondbacks,12,9,0.455,0.545,yes
+2026-06-05,KXMLBGAME-26JUN052040MILCOL,Colorado Rockies,Milwaukee Brewers,Colorado Rockies,Milwaukee Brewers,0,3,1.5,Milwaukee Brewers,11,12,0.405,0.595,no
+2026-06-05,KXMLBGAME-26JUN052015CINSTL,St. Louis Cardinals,Cincinnati Reds,St. Louis Cardinals,St. Louis Cardinals,1,6,-1.5,St. Louis Cardinals,8,9,0.575,0.435,yes
+2026-06-05,KXMLBGAME-26JUN052015CLETEX,Texas Rangers,Cleveland Guardians,Cleveland Guardians,Texas Rangers,0,-3,1.5,Cleveland Guardians,5,7.5,0.535,0.46499999999999997,no
+2026-06-05,KXMLBGAME-26JUN052015KCMIN,Minnesota Twins,Kansas City Royals,Kansas City Royals,Minnesota Twins,0,-3,1.5,Kansas City Royals,7,8.5,0.485,0.515,no
+2026-06-05,KXMLBGAME-26JUN052010ATHHOU,Houston Astros,Oakland Athletics,Houston Astros,Houston Astros,1,1,1.5,Oakland Athletics,5,9,0.505,0.5,yes
+2026-06-05,KXMLBGAME-26JUN051910TBMIA,Miami Marlins,Tampa Bay Rays,Tampa Bay Rays,Tampa Bay Rays,1,-2,1.5,Tampa Bay Rays,6,8,0.555,0.455,yes
+2026-06-05,KXMLBGAME-26JUN051915PITATL,Atlanta Braves,Pittsburgh Pirates,Atlanta Braves,Atlanta Braves,1,2,-1.5,Atlanta Braves,6,8.5,0.575,0.425,yes
+2026-06-05,KXMLBGAME-26JUN051907BALTOR,Toronto Blue Jays,Baltimore Orioles,Toronto Blue Jays,Baltimore Orioles,0,1,-1.5,Toronto Blue Jays,3,8.5,0.565,0.435,no
+2026-06-05,KXMLBGAME-26JUN051905BOSNYY,New York Yankees,Boston Red Sox,New York Yankees,Boston Red Sox,0,1,-1.5,New York Yankees,3,8,0.565,0.435,no
+2026-06-05,KXMLBGAME-26JUN051840SEADET,Detroit Tigers,Seattle Mariners,Seattle Mariners,Detroit Tigers,0,-2,1.5,Seattle Mariners,6,7.5,0.535,0.46499999999999997,no
+2026-06-05,KXMLBGAME-26JUN051840CWSPHI,Philadelphia Phillies,Chicago White Sox,Philadelphia Phillies,Philadelphia Phillies,1,2,-1.5,Philadelphia Phillies,8,8.5,0.635,0.375,yes
+2026-06-05,KXMLBGAME-26JUN051420SFCHC,Chicago Cubs,San Francisco Giants,Chicago Cubs,San Francisco Giants,0,1,-1.5,Chicago Cubs,7,10.5,0.625,0.385,no
+2026-06-04,KXMLBGAME-26JUN042140LADAZ,Arizona Diamondbacks,Los Angeles Dodgers,Los Angeles Dodgers,Arizona Diamondbacks,0,-5,1.5,Los Angeles Dodgers,7,9,0.555,0.445,no
+2026-06-04,KXMLBGAME-26JUN042005ATHCHC,Chicago Cubs,Oakland Athletics,Chicago Cubs,Chicago Cubs,1,1,-1.5,Chicago Cubs,5,10,0.575,0.425,yes
+2026-06-04,KXMLBGAME-26JUN042010PITHOU,Houston Astros,Pittsburgh Pirates,Houston Astros,Pittsburgh Pirates,0,6,1.5,Pittsburgh Pirates,8,8.5,0.515,0.495,no
+2026-06-04,KXMLBGAME-26JUN041940KCMIN,Minnesota Twins,Kansas City Royals,Kansas City Royals,Kansas City Royals,1,-1,1.5,Kansas City Royals,5,9,0.515,0.485,yes
+2026-06-04,KXMLBGAME-26JUN041915TORATL,Atlanta Braves,Toronto Blue Jays,Atlanta Braves,Toronto Blue Jays,0,2,-1.5,Atlanta Braves,4,7.5,0.705,0.305,no
+2026-06-04,KXMLBGAME-26JUN041410SFMIL,Milwaukee Brewers,San Francisco Giants,Milwaukee Brewers,San Francisco Giants,0,4,-1.5,Milwaukee Brewers,8,9,0.645,0.365,no
+2026-06-04,KXMLBGAME-26JUN041335CLENYY,New York Yankees,Cleveland Guardians,New York Yankees,New York Yankees,1,2,-1.5,New York Yankees,6,9,0.605,0.395,yes
+2026-06-04,KXMLBGAME-26JUN041335BALBOS,Boston Red Sox,Baltimore Orioles,Boston Red Sox,Baltimore Orioles,0,2,1.5,Baltimore Orioles,8,10.5,0.525,0.475,no
+2026-06-04,KXMLBGAME-26JUN041305SDPHI,Philadelphia Phillies,San Diego Padres,Philadelphia Phillies,Philadelphia Phillies,1,3,-1.5,Philadelphia Phillies,5,8.5,0.665,0.345,yes
+2026-06-03,KXMLBGAME-26JUN032140LADAZ,Arizona Diamondbacks,Los Angeles Dodgers,Los Angeles Dodgers,Los Angeles Dodgers,1,-1,1.5,Los Angeles Dodgers,7,8.5,0.655,0.345,yes
+2026-06-03,KXMLBGAME-26JUN032138COLLAA,Los Angeles Angels,Colorado Rockies,Los Angeles Angels,Los Angeles Angels,1,2,-1.5,Los Angeles Angels,6,8.5,0.565,0.435,yes
+2026-06-03,KXMLBGAME-26JUN032005ATHCHC,Chicago Cubs,Oakland Athletics,Chicago Cubs,Oakland Athletics,0,2,-1.5,Chicago Cubs,8,8.5,0.555,0.445,no
+2026-06-03,KXMLBGAME-26JUN032010PITHOU,Houston Astros,Pittsburgh Pirates,Houston Astros,Houston Astros,1,1,1.5,Pittsburgh Pirates,3,8,0.425,0.575,yes
+2026-06-03,KXMLBGAME-26JUN031945TEXSTL,St. Louis Cardinals,Texas Rangers,Texas Rangers,St. Louis Cardinals,0,-2,1.5,Texas Rangers,4,8,0.485,0.515,no
+2026-06-03,KXMLBGAME-26JUN031940SFMIL,Milwaukee Brewers,San Francisco Giants,Milwaukee Brewers,San Francisco Giants,0,1,-1.5,Milwaukee Brewers,7,8,0.555,0.445,no
+2026-06-03,KXMLBGAME-26JUN031910KCCIN,Cincinnati Reds,Kansas City Royals,Cincinnati Reds,Kansas City Royals,0,2,-1.5,Cincinnati Reds,4,8,0.595,0.415,no
+2026-06-03,KXMLBGAME-26JUN031905CLENYY,New York Yankees,Cleveland Guardians,New York Yankees,Cleveland Guardians,0,1,-1.5,New York Yankees,3,7.5,0.555,0.445,no
+2026-06-03,KXMLBGAME-26JUN031915TORATL,Atlanta Braves,Toronto Blue Jays,Atlanta Braves,Atlanta Braves,1,4,-1.5,Atlanta Braves,8,8,0.575,0.425,yes
+2026-06-03,KXMLBGAME-26JUN031845BALBOS,Boston Red Sox,Baltimore Orioles,Boston Red Sox,Boston Red Sox,1,2,-1.5,Boston Red Sox,8,8.5,0.585,0.415,yes
+2026-06-03,KXMLBGAME-26JUN031840SDPHI,Philadelphia Phillies,San Diego Padres,Philadelphia Phillies,Philadelphia Phillies,1,1,-1.5,Philadelphia Phillies,5,7.5,0.675,0.325,yes
+2026-06-03,KXMLBGAME-26JUN031540NYMSEA,Seattle Mariners,New York Mets,Seattle Mariners,New York Mets,0,4,-1.5,Seattle Mariners,6,7,0.565,0.435,no
+2026-06-03,KXMLBGAME-26JUN031340CWSMIN,Minnesota Twins,Chicago White Sox,Minnesota Twins,Chicago White Sox,0,1,-1.5,Minnesota Twins,5,9,0.575,0.425,no
+2026-06-03,KXMLBGAME-26JUN031310DETTB,Tampa Bay Rays,Detroit Tigers,Tampa Bay Rays,Detroit Tigers,0,1,-1.5,Tampa Bay Rays,3,8.5,0.575,0.435,no
+2026-06-03,KXMLBGAME-26JUN031305MIAWSH,Washington Nationals,Miami Marlins,Miami Marlins,Miami Marlins,1,-4,1.5,Miami Marlins,6,8,0.505,0.495,yes
+2026-06-02,KXMLBGAME-26JUN022140LADAZ,Arizona Diamondbacks,Los Angeles Dodgers,Arizona Diamondbacks,Los Angeles Dodgers,0,1,1.5,Los Angeles Dodgers,11,9,0.475,0.525,no
+2026-06-02,KXMLBGAME-26JUN022138COLLAA,Los Angeles Angels,Colorado Rockies,Colorado Rockies,Colorado Rockies,1,-5,-1.5,Los Angeles Angels,9,8.5,0.415,0.595,yes
+2026-06-02,KXMLBGAME-26JUN022140NYMSEA,Seattle Mariners,New York Mets,Seattle Mariners,Seattle Mariners,1,1,-1.5,Seattle Mariners,7,7.5,0.585,0.425,yes
+2026-06-02,KXMLBGAME-26JUN022010PITHOU,Houston Astros,Pittsburgh Pirates,Pittsburgh Pirates,Pittsburgh Pirates,1,-2,1.5,Pittsburgh Pirates,10,9,0.485,0.515,yes
+2026-06-02,KXMLBGAME-26JUN022005ATHCHC,Chicago Cubs,Oakland Athletics,Chicago Cubs,Oakland Athletics,0,4,-1.5,Chicago Cubs,14,7.5,0.535,0.46499999999999997,no
+2026-06-02,KXMLBGAME-26JUN021945TEXSTL,St. Louis Cardinals,Texas Rangers,Texas Rangers,Texas Rangers,1,-1,1.5,Texas Rangers,5,7,0.505,0.495,yes
+2026-06-02,KXMLBGAME-26JUN021940SFMIL,Milwaukee Brewers,San Francisco Giants,Milwaukee Brewers,Milwaukee Brewers,1,2,-1.5,Milwaukee Brewers,6,7,0.695,0.305,yes
+2026-06-02,KXMLBGAME-26JUN021940CWSMIN,Minnesota Twins,Chicago White Sox,Chicago White Sox,Minnesota Twins,0,-1,1.5,Chicago White Sox,7,8,0.535,0.46499999999999997,no
+2026-06-02,KXMLBGAME-26JUN021905CLENYY,New York Yankees,Cleveland Guardians,New York Yankees,Cleveland Guardians,0,1,-1.5,New York Yankees,5,7.5,0.645,0.355,no
+2026-06-02,KXMLBGAME-26JUN021910KCCIN,Cincinnati Reds,Kansas City Royals,Cincinnati Reds,Cincinnati Reds,1,1,-1.5,Cincinnati Reds,9,9,0.535,0.46499999999999997,yes
+2026-06-02,KXMLBGAME-26JUN021915TORATL,Atlanta Braves,Toronto Blue Jays,Atlanta Braves,Atlanta Braves,1,1,1.5,Toronto Blue Jays,5,7.5,0.515,0.485,yes
+2026-06-02,KXMLBGAME-26JUN021840DETTB,Tampa Bay Rays,Detroit Tigers,Tampa Bay Rays,Detroit Tigers,0,2,-1.5,Tampa Bay Rays,8,8,0.565,0.435,no
+2026-06-02,KXMLBGAME-26JUN021845MIAWSH,Washington Nationals,Miami Marlins,Miami Marlins,Miami Marlins,1,-3,1.5,Miami Marlins,7,9,0.485,0.515,yes
+2026-06-02,KXMLBGAME-26JUN021840SDPHI,Philadelphia Phillies,San Diego Padres,San Diego Padres,Philadelphia Phillies,0,-3,-1.5,Philadelphia Phillies,9,8,0.415,0.585,no
+2026-06-02,KXMLBGAME-26JUN021845BALBOS,Boston Red Sox,Baltimore Orioles,Boston Red Sox,Baltimore Orioles,0,1,-1.5,Boston Red Sox,7,8.5,0.555,0.445,no
+2026-06-01,KXMLBGAME-26JUN012138COLLAA,Los Angeles Angels,Colorado Rockies,Los Angeles Angels,Colorado Rockies,0,1,-1.5,Los Angeles Angels,9,8,0.635,0.355,no
+2026-06-01,KXMLBGAME-26JUN012140NYMSEA,Seattle Mariners,New York Mets,Seattle Mariners,Seattle Mariners,1,2,-1.5,Seattle Mariners,6,7,0.545,0.455,yes
+2026-06-01,KXMLBGAME-26JUN012140LADAZ,Arizona Diamondbacks,Los Angeles Dodgers,Arizona Diamondbacks,Arizona Diamondbacks,1,3,1.5,Los Angeles Dodgers,5,8.5,0.395,0.605,yes
+2026-06-01,KXMLBGAME-26JUN011940CWSMIN,Minnesota Twins,Chicago White Sox,Chicago White Sox,Minnesota Twins,0,-1,-1.5,Minnesota Twins,5,8,0.435,0.565,no
+2026-06-01,KXMLBGAME-26JUN011945TEXSTL,St. Louis Cardinals,Texas Rangers,Texas Rangers,Texas Rangers,1,-1,1.5,Texas Rangers,5,7.5,0.545,0.46499999999999997,yes
+2026-06-01,KXMLBGAME-26JUN011940SFMIL,Milwaukee Brewers,San Francisco Giants,Milwaukee Brewers,Milwaukee Brewers,1,2,-1.5,Milwaukee Brewers,6,7.5,0.595,0.405,yes
+2026-06-01,KXMLBGAME-26JUN011910KCCIN,Cincinnati Reds,Kansas City Royals,Cincinnati Reds,Kansas City Royals,0,1,-1.5,Cincinnati Reds,13,9.5,0.555,0.445,no
+2026-06-01,KXMLBGAME-26JUN011840DETTB,Tampa Bay Rays,Detroit Tigers,Tampa Bay Rays,Detroit Tigers,0,1,-1.5,Tampa Bay Rays,3,8,0.605,0.405,no
+2026-06-01,KXMLBGAME-26JUN011845MIAWSH,Washington Nationals,Miami Marlins,Washington Nationals,Miami Marlins,0,1,-1.5,Washington Nationals,5,8,0.565,0.435,no
+2026-05-31,KXMLBGAME-26MAY311920CHCSTL,St. Louis Cardinals,Chicago Cubs,St. Louis Cardinals,St. Louis Cardinals,1,2,1.5,Chicago Cubs,10,8.5,0.525,0.475,yes
+2026-05-31,KXMLBGAME-26MAY311610PHILAD,Los Angeles Dodgers,Philadelphia Phillies,Los Angeles Dodgers,Los Angeles Dodgers,1,2,-1.5,Los Angeles Dodgers,6,9,0.685,0.315,yes
+2026-05-31,KXMLBGAME-26MAY311605NYYATH,Oakland Athletics,New York Yankees,New York Yankees,New York Yankees,1,-4,1.5,New York Yankees,6,10,0.625,0.375,yes
+2026-05-31,KXMLBGAME-26MAY311610AZSEA,Seattle Mariners,Arizona Diamondbacks,Seattle Mariners,Seattle Mariners,1,1,-1.5,Seattle Mariners,7,7.5,0.565,0.435,yes
+2026-05-31,KXMLBGAME-26MAY311510SFCOL,Colorado Rockies,San Francisco Giants,San Francisco Giants,San Francisco Giants,1,-3,1.5,San Francisco Giants,9,11,0.505,0.495,yes
+2026-05-31,KXMLBGAME-26MAY311435KCTEX,Texas Rangers,Kansas City Royals,Texas Rangers,Texas Rangers,1,2,1.5,Kansas City Royals,6,7.5,0.515,0.495,yes
+2026-05-31,KXMLBGAME-26MAY311410MILHOU,Houston Astros,Milwaukee Brewers,Milwaukee Brewers,Milwaukee Brewers,1,-3,1.5,Milwaukee Brewers,7,7.5,0.645,0.355,yes
+2026-05-31,KXMLBGAME-26MAY311410DETCWS,Chicago White Sox,Detroit Tigers,Chicago White Sox,Chicago White Sox,1,2,-1.5,Chicago White Sox,8,8,0.555,0.445,yes
+2026-05-31,KXMLBGAME-26MAY311340MIANYM,New York Mets,Miami Marlins,Miami Marlins,New York Mets,0,-2,-1.5,New York Mets,4,7.5,0.415,0.585,no
+2026-05-31,KXMLBGAME-26MAY311335SDWSH,Washington Nationals,San Diego Padres,Washington Nationals,Washington Nationals,1,3,1.5,San Diego Padres,11,9,0.495,0.505,yes
+2026-05-31,KXMLBGAME-26MAY311340LAATB,Tampa Bay Rays,Los Angeles Angels,Tampa Bay Rays,Tampa Bay Rays,1,1,-1.5,Tampa Bay Rays,3,8,0.655,0.345,yes
+2026-05-31,KXMLBGAME-26MAY311335MINPIT,Pittsburgh Pirates,Minnesota Twins,Pittsburgh Pirates,Pittsburgh Pirates,1,1,-1.5,Pittsburgh Pirates,3,7.5,0.595,0.405,yes
+2026-05-31,KXMLBGAME-26MAY311340BOSCLE,Cleveland Guardians,Boston Red Sox,Boston Red Sox,Boston Red Sox,1,-3,1.5,Boston Red Sox,5,7,0.485,0.515,yes
+2026-05-31,KXMLBGAME-26MAY311340ATLCIN,Cincinnati Reds,Atlanta Braves,Atlanta Braves,Cincinnati Reds,0,-5,1.5,Atlanta Braves,7,8.5,0.545,0.46499999999999997,no
+2026-05-31,KXMLBGAME-26MAY311215TORBAL,Baltimore Orioles,Toronto Blue Jays,Toronto Blue Jays,Baltimore Orioles,0,-1,-1.5,Baltimore Orioles,5,8,0.445,0.56,no
+2026-05-30,KXMLBGAME-26MAY302210PHILAD,Los Angeles Dodgers,Philadelphia Phillies,Los Angeles Dodgers,Philadelphia Phillies,0,3,1.5,Philadelphia Phillies,7,8.5,0.545,0.46499999999999997,no
+2026-05-30,KXMLBGAME-26MAY302205NYYATH,Oakland Athletics,New York Yankees,New York Yankees,Oakland Athletics,0,-1,1.5,New York Yankees,5,9.5,0.595,0.405,no
+2026-05-30,KXMLBGAME-26MAY302210AZSEA,Seattle Mariners,Arizona Diamondbacks,Seattle Mariners,Seattle Mariners,1,2,-1.5,Seattle Mariners,6,7,0.575,0.425,yes
+2026-05-30,KXMLBGAME-26MAY302110SFCOL,Colorado Rockies,San Francisco Giants,San Francisco Giants,Colorado Rockies,0,-1,1.5,San Francisco Giants,7,11,0.515,0.485,no
+2026-05-30,KXMLBGAME-26MAY301915ATLCIN,Cincinnati Reds,Atlanta Braves,Atlanta Braves,Atlanta Braves,1,-1,1.5,Atlanta Braves,7,9.5,0.545,0.46499999999999997,yes
+2026-05-30,KXMLBGAME-26MAY301915CHCSTL,St. Louis Cardinals,Chicago Cubs,Chicago Cubs,Chicago Cubs,1,-3,1.5,Chicago Cubs,5,8,0.545,0.455,yes
+2026-05-30,KXMLBGAME-26MAY301610MILHOU,Houston Astros,Milwaukee Brewers,Houston Astros,Houston Astros,1,3,1.5,Milwaukee Brewers,7,9,0.485,0.515,yes
+2026-05-30,KXMLBGAME-26MAY301610BOSCLE,Cleveland Guardians,Boston Red Sox,Cleveland Guardians,Boston Red Sox,0,2,-1.5,Cleveland Guardians,4,6.5,0.535,0.46499999999999997,no
+2026-05-30,KXMLBGAME-26MAY301610LAATB,Tampa Bay Rays,Los Angeles Angels,Tampa Bay Rays,Los Angeles Angels,0,1,-1.5,Tampa Bay Rays,5,7,0.605,0.395,no
+2026-05-30,KXMLBGAME-26MAY301610MIANYM,New York Mets,Miami Marlins,Miami Marlins,New York Mets,0,-2,-1.5,New York Mets,4,7,0.455,0.545,no
+2026-05-30,KXMLBGAME-26MAY301605KCTEX,Texas Rangers,Kansas City Royals,Texas Rangers,Texas Rangers,1,3,1.5,Kansas City Royals,9,8,0.515,0.475,yes
+2026-05-30,KXMLBGAME-26MAY301605TORBAL,Baltimore Orioles,Toronto Blue Jays,Toronto Blue Jays,Baltimore Orioles,0,-1,1.5,Toronto Blue Jays,3,7.5,0.535,0.46499999999999997,no
+2026-05-30,KXMLBGAME-26MAY301605SDWSH,Washington Nationals,San Diego Padres,San Diego Padres,Washington Nationals,0,-4,1.5,San Diego Padres,6,7.5,0.545,0.46499999999999997,no
+2026-05-30,KXMLBGAME-26MAY301605MINPIT,Pittsburgh Pirates,Minnesota Twins,Pittsburgh Pirates,Pittsburgh Pirates,1,4,-1.5,Pittsburgh Pirates,6,8.5,0.575,0.425,yes
+2026-05-30,KXMLBGAME-26MAY301410DETCWS,Chicago White Sox,Detroit Tigers,Chicago White Sox,Chicago White Sox,1,5,1.5,Detroit Tigers,11,7.5,0.495,0.505,yes
+2026-05-29,KXMLBGAME-26MAY292210AZSEA,Seattle Mariners,Arizona Diamondbacks,Seattle Mariners,Seattle Mariners,1,1,-1.5,Seattle Mariners,7,7,0.565,0.435,yes
+2026-05-29,KXMLBGAME-26MAY292215PHILAD,Los Angeles Dodgers,Philadelphia Phillies,Los Angeles Dodgers,Los Angeles Dodgers,1,4,1.5,Philadelphia Phillies,8,8,0.515,0.485,yes
+2026-05-29,KXMLBGAME-26MAY292140NYYATH,Oakland Athletics,New York Yankees,New York Yankees,New York Yankees,1,-3,1.5,New York Yankees,7,9.5,0.575,0.435,yes
+2026-05-29,KXMLBGAME-26MAY292040SFCOL,Colorado Rockies,San Francisco Giants,Colorado Rockies,Colorado Rockies,1,1,1.5,San Francisco Giants,11,10.5,0.425,0.575,yes
+2026-05-29,KXMLBGAME-26MAY292010MILHOU,Houston Astros,Milwaukee Brewers,Milwaukee Brewers,Milwaukee Brewers,1,-1,1.5,Milwaukee Brewers,3,8.5,0.565,0.445,yes
+2026-05-29,KXMLBGAME-26MAY292005KCTEX,Texas Rangers,Kansas City Royals,Texas Rangers,Texas Rangers,1,3,-1.5,Texas Rangers,7,7.5,0.535,0.46499999999999997,yes
+2026-05-29,KXMLBGAME-26MAY291940DETCWS,Chicago White Sox,Detroit Tigers,Chicago White Sox,Chicago White Sox,1,3,1.5,Detroit Tigers,7,8.5,0.505,0.495,yes
+2026-05-29,KXMLBGAME-26MAY291905TORBAL,Baltimore Orioles,Toronto Blue Jays,Toronto Blue Jays,Toronto Blue Jays,1,-3,1.5,Toronto Blue Jays,7,9.5,0.46499999999999997,0.535,yes
+2026-05-29,KXMLBGAME-26MAY291915CHCSTL,St. Louis Cardinals,Chicago Cubs,St. Louis Cardinals,St. Louis Cardinals,1,1,1.5,Chicago Cubs,9,7.5,0.455,0.545,yes
+2026-05-29,KXMLBGAME-26MAY291910MIANYM,New York Mets,Miami Marlins,New York Mets,New York Mets,1,1,1.5,Miami Marlins,3,7.5,0.515,0.485,yes
+2026-05-29,KXMLBGAME-26MAY291910BOSCLE,Cleveland Guardians,Boston Red Sox,Boston Red Sox,Cleveland Guardians,0,-1,1.5,Boston Red Sox,7,8,0.46499999999999997,0.545,no
+2026-05-29,KXMLBGAME-26MAY291910LAATB,Tampa Bay Rays,Los Angeles Angels,Tampa Bay Rays,Tampa Bay Rays,1,3,-1.5,Tampa Bay Rays,7,8,0.595,0.405,yes
+2026-05-29,KXMLBGAME-26MAY291845SDWSH,Washington Nationals,San Diego Padres,San Diego Padres,San Diego Padres,1,-1,1.5,San Diego Padres,7,9.5,0.485,0.525,yes
+2026-05-29,KXMLBGAME-26MAY291840ATLCIN,Cincinnati Reds,Atlanta Braves,Atlanta Braves,Atlanta Braves,1,-3,1.5,Atlanta Braves,11,9.5,0.565,0.445,yes
+2026-05-29,KXMLBGAME-26MAY291845MINPIT,Pittsburgh Pirates,Minnesota Twins,Pittsburgh Pirates,Pittsburgh Pirates,1,1,-1.5,Pittsburgh Pirates,9,8,0.545,0.455,yes
+2026-05-28,KXMLBGAME-26MAY282005HOUTEX,Texas Rangers,Houston Astros,Texas Rangers,Houston Astros,0,1,-1.5,Texas Rangers,3,7,0.565,0.435,no
+2026-05-28,KXMLBGAME-26MAY281835TORBAL,Baltimore Orioles,Toronto Blue Jays,Toronto Blue Jays,Toronto Blue Jays,1,-2,-1.5,Baltimore Orioles,12,8.5,0.46499999999999997,0.535,yes
+2026-05-28,KXMLBGAME-26MAY281840CHCPIT,Pittsburgh Pirates,Chicago Cubs,Pittsburgh Pirates,Chicago Cubs,0,1,-1.5,Pittsburgh Pirates,9,7.5,0.615,0.395,no
+2026-05-28,KXMLBGAME-26MAY281610ATLBOS,Boston Red Sox,Atlanta Braves,Atlanta Braves,Atlanta Braves,1,-1,1.5,Atlanta Braves,3,6.5,0.555,0.455,yes
+2026-05-28,KXMLBGAME-26MAY281410MINCWS,Chicago White Sox,Minnesota Twins,Chicago White Sox,Chicago White Sox,1,1,-1.5,Chicago White Sox,3,8,0.605,0.405,yes
+2026-05-28,KXMLBGAME-26MAY281310LAADET,Detroit Tigers,Los Angeles Angels,Detroit Tigers,Los Angeles Angels,0,1,-1.5,Detroit Tigers,9,8.5,0.555,0.445,no
+2026-05-27,KXMLBGAME-26MAY272210COLLAD,Los Angeles Dodgers,Colorado Rockies,Los Angeles Dodgers,Los Angeles Dodgers,1,4,-1.5,Los Angeles Dodgers,6,8,0.795,0.20500000000000002,yes
+2026-05-27,KXMLBGAME-26MAY272005HOUTEX,Texas Rangers,Houston Astros,Texas Rangers,Houston Astros,0,4,-1.5,Texas Rangers,6,7,0.565,0.435,no
+2026-05-27,KXMLBGAME-26MAY271940NYYKC,Kansas City Royals,New York Yankees,New York Yankees,New York Yankees,1,-4,1.5,New York Yankees,8,8.5,0.595,0.405,yes
+2026-05-27,KXMLBGAME-26MAY271940MINCWS,Chicago White Sox,Minnesota Twins,Minnesota Twins,Chicago White Sox,0,-1,1.5,Minnesota Twins,5,8,0.505,0.495,no
+2026-05-27,KXMLBGAME-26MAY271910CINNYM,New York Mets,Cincinnati Reds,New York Mets,New York Mets,1,3,1.5,Cincinnati Reds,7,8.5,0.525,0.475,yes
+2026-05-27,KXMLBGAME-26MAY271840LAADET,Detroit Tigers,Los Angeles Angels,Detroit Tigers,Detroit Tigers,1,1,1.5,Los Angeles Angels,3,7.5,0.515,0.495,yes
+2026-05-27,KXMLBGAME-26MAY271845ATLBOS,Boston Red Sox,Atlanta Braves,Atlanta Braves,Boston Red Sox,0,-2,1.5,Atlanta Braves,4,8.5,0.485,0.515,no
+2026-05-27,KXMLBGAME-26MAY271835TBBAL,Baltimore Orioles,Tampa Bay Rays,Tampa Bay Rays,Baltimore Orioles,0,-2,1.5,Tampa Bay Rays,4,9,0.535,0.475,no
+2026-05-27,KXMLBGAME-26MAY271840CHCPIT,Pittsburgh Pirates,Chicago Cubs,Pittsburgh Pirates,Chicago Cubs,0,4,-1.5,Pittsburgh Pirates,8,9,0.535,0.475,no
+2026-05-27,KXMLBGAME-26MAY271610PHISD,San Diego Padres,Philadelphia Phillies,Philadelphia Phillies,Philadelphia Phillies,1,-1,1.5,Philadelphia Phillies,3,7,0.555,0.445,yes
+2026-05-27,KXMLBGAME-26MAY271545AZSF,San Francisco Giants,Arizona Diamondbacks,Arizona Diamondbacks,Arizona Diamondbacks,1,-2,1.5,Arizona Diamondbacks,4,7.5,0.515,0.485,yes
+2026-05-27,KXMLBGAME-26MAY271505SEAATH,Oakland Athletics,Seattle Mariners,Seattle Mariners,Seattle Mariners,1,-1,1.5,Seattle Mariners,7,9,0.525,0.475,yes
+2026-05-27,KXMLBGAME-26MAY271340STLMIL,Milwaukee Brewers,St. Louis Cardinals,Milwaukee Brewers,Milwaukee Brewers,1,3,-1.5,Milwaukee Brewers,7,8,0.615,0.385,yes
+2026-05-27,KXMLBGAME-26MAY271307MIATOR,Toronto Blue Jays,Miami Marlins,Toronto Blue Jays,Toronto Blue Jays,1,1,-1.5,Toronto Blue Jays,5,7.5,0.585,0.415,yes
+2026-05-27,KXMLBGAME-26MAY271310WSHCLE,Cleveland Guardians,Washington Nationals,Cleveland Guardians,Cleveland Guardians,1,1,-1.5,Cleveland Guardians,5,8,0.625,0.385,yes
+2026-05-26,KXMLBGAME-26MAY262210COLLAD,Los Angeles Dodgers,Colorado Rockies,Los Angeles Dodgers,Los Angeles Dodgers,1,1,-1.5,Los Angeles Dodgers,5,9,0.675,0.325,yes
+2026-05-26,KXMLBGAME-26MAY262140SEAATH,Oakland Athletics,Seattle Mariners,Oakland Athletics,Seattle Mariners,0,1,1.5,Seattle Mariners,7,9.5,0.515,0.485,no
+2026-05-26,KXMLBGAME-26MAY262145AZSF,San Francisco Giants,Arizona Diamondbacks,Arizona Diamondbacks,Arizona Diamondbacks,1,-1,1.5,Arizona Diamondbacks,7,8,0.495,0.515,yes
+2026-05-26,KXMLBGAME-26MAY262140PHISD,San Diego Padres,Philadelphia Phillies,San Diego Padres,Philadelphia Phillies,0,3,1.5,Philadelphia Phillies,5,7.5,0.505,0.495,no
+2026-05-26,KXMLBGAME-26MAY262005HOUTEX,Texas Rangers,Houston Astros,Texas Rangers,Texas Rangers,1,2,-1.5,Texas Rangers,8,8,0.545,0.455,yes
+2026-05-26,KXMLBGAME-26MAY261940NYYKC,Kansas City Royals,New York Yankees,New York Yankees,New York Yankees,1,-3,1.5,New York Yankees,5,8.5,0.645,0.355,yes
+2026-05-26,KXMLBGAME-26MAY261940STLMIL,Milwaukee Brewers,St. Louis Cardinals,Milwaukee Brewers,Milwaukee Brewers,1,1,-1.5,Milwaukee Brewers,3,8,0.655,0.345,yes
+2026-05-26,KXMLBGAME-26MAY261940MINCWS,Chicago White Sox,Minnesota Twins,Minnesota Twins,Minnesota Twins,1,-1,1.5,Minnesota Twins,5,7.5,0.515,0.495,yes
+2026-05-26,KXMLBGAME-26MAY261907MIATOR,Toronto Blue Jays,Miami Marlins,Miami Marlins,Toronto Blue Jays,0,-2,-1.5,Toronto Blue Jays,4,7.5,0.46499999999999997,0.535,no
+2026-05-26,KXMLBGAME-26MAY261910CINNYM,New York Mets,Cincinnati Reds,Cincinnati Reds,Cincinnati Reds,1,-1,1.5,Cincinnati Reds,7,7.5,0.535,0.475,yes
+2026-05-26,KXMLBGAME-26MAY261835TBBAL,Baltimore Orioles,Tampa Bay Rays,Baltimore Orioles,Baltimore Orioles,1,1,1.5,Tampa Bay Rays,9,8.5,0.495,0.515,yes
+2026-05-26,KXMLBGAME-26MAY261840CHCPIT,Pittsburgh Pirates,Chicago Cubs,Chicago Cubs,Pittsburgh Pirates,0,-3,-1.5,Pittsburgh Pirates,7,8,0.445,0.555,no
+2026-05-26,KXMLBGAME-26MAY261840LAADET,Detroit Tigers,Los Angeles Angels,Detroit Tigers,Los Angeles Angels,0,1,-1.5,Detroit Tigers,5,9,0.555,0.445,no
+2026-05-26,KXMLBGAME-26MAY261845ATLBOS,Boston Red Sox,Atlanta Braves,Atlanta Braves,Atlanta Braves,1,-4,1.5,Atlanta Braves,6,8,0.485,0.515,yes
+2026-05-26,KXMLBGAME-26MAY261810WSHCLE,Cleveland Guardians,Washington Nationals,Cleveland Guardians,Washington Nationals,0,1,-1.5,Cleveland Guardians,5,7.5,0.545,0.455,no
+2026-05-25,KXMLBGAME-26MAY252140SEAATH,Oakland Athletics,Seattle Mariners,Oakland Athletics,Seattle Mariners,0,4,1.5,Seattle Mariners,12,10.5,0.495,0.505,no
+2026-05-25,KXMLBGAME-26MAY252110COLLAD,Los Angeles Dodgers,Colorado Rockies,Los Angeles Dodgers,Los Angeles Dodgers,1,3,-1.5,Los Angeles Dodgers,7,9,0.745,0.255,yes
+2026-05-25,KXMLBGAME-26MAY251907MIATOR,Toronto Blue Jays,Miami Marlins,Toronto Blue Jays,Miami Marlins,0,1,-1.5,Toronto Blue Jays,5,7.5,0.585,0.425,no
+2026-05-25,KXMLBGAME-26MAY251905HOUTEX,Texas Rangers,Houston Astros,Texas Rangers,Houston Astros,0,3,1.5,Houston Astros,7,8,0.525,0.475,no
+2026-05-25,KXMLBGAME-26MAY251840PHISD,San Diego Padres,Philadelphia Phillies,Philadelphia Phillies,Philadelphia Phillies,1,-2,1.5,Philadelphia Phillies,6,7,0.515,0.485,yes
+2026-05-25,KXMLBGAME-26MAY251810WSHCLE,Cleveland Guardians,Washington Nationals,Cleveland Guardians,Washington Nationals,0,2,-1.5,Cleveland Guardians,8,8,0.615,0.385,no
+2026-05-25,KXMLBGAME-26MAY251705AZSF,San Francisco Giants,Arizona Diamondbacks,San Francisco Giants,Arizona Diamondbacks,0,1,-1.5,San Francisco Giants,5,7.5,0.545,0.455,no
+2026-05-25,KXMLBGAME-26MAY251610CINNYM,New York Mets,Cincinnati Reds,New York Mets,Cincinnati Reds,0,2,-1.5,New York Mets,4,7.5,0.555,0.445,no
+2026-05-25,KXMLBGAME-26MAY251540NYYKC,Kansas City Royals,New York Yankees,Kansas City Royals,New York Yankees,0,3,1.5,New York Yankees,7,8.5,0.455,0.545,no
+2026-05-25,KXMLBGAME-26MAY251410STLMIL,Milwaukee Brewers,St. Louis Cardinals,Milwaukee Brewers,Milwaukee Brewers,1,2,-1.5,Milwaukee Brewers,4,7.5,0.665,0.335,yes
+2026-05-25,KXMLBGAME-26MAY251410MINCWS,Chicago White Sox,Minnesota Twins,Minnesota Twins,Chicago White Sox,0,-2,1.5,Minnesota Twins,6,8,0.495,0.505,no
+2026-05-25,KXMLBGAME-26MAY251335CHCPIT,Pittsburgh Pirates,Chicago Cubs,Pittsburgh Pirates,Pittsburgh Pirates,1,3,1.5,Chicago Cubs,5,8,0.46499999999999997,0.535,yes
+2026-05-25,KXMLBGAME-26MAY251335TBBAL,Baltimore Orioles,Tampa Bay Rays,Tampa Bay Rays,Baltimore Orioles,0,-2,1.5,Tampa Bay Rays,6,7.5,0.515,0.485,no
+2026-05-24,KXMLBGAME-26MAY241920TEXLAA,Los Angeles Angels,Texas Rangers,Texas Rangers,Los Angeles Angels,0,-2,1.5,Texas Rangers,4,7.5,0.475,0.525,no
+2026-05-24,KXMLBGAME-26MAY241610ATHSD,San Diego Padres,Oakland Athletics,San Diego Padres,Oakland Athletics,0,1,-1.5,San Diego Padres,3,7.5,0.615,0.395,no
+2026-05-24,KXMLBGAME-26MAY241610WSHATL,Atlanta Braves,Washington Nationals,Atlanta Braves,Washington Nationals,0,3,-1.5,Atlanta Braves,5,8,0.595,0.405,no
+2026-05-24,KXMLBGAME-26MAY241610COLAZ,Arizona Diamondbacks,Colorado Rockies,Arizona Diamondbacks,Arizona Diamondbacks,1,1,-1.5,Arizona Diamondbacks,7,9,0.645,0.355,yes
+2026-05-24,KXMLBGAME-26MAY241605CWSSF,San Francisco Giants,Chicago White Sox,San Francisco Giants,San Francisco Giants,1,1,1.5,Chicago White Sox,5,8,0.545,0.46499999999999997,yes
+2026-05-24,KXMLBGAME-26MAY241420HOUCHC,Chicago Cubs,Houston Astros,Chicago Cubs,Houston Astros,0,1,-1.5,Chicago Cubs,5,7,0.615,0.385,no
+2026-05-24,KXMLBGAME-26MAY241410LADMIL,Milwaukee Brewers,Los Angeles Dodgers,Los Angeles Dodgers,Los Angeles Dodgers,1,-1,1.5,Los Angeles Dodgers,5,8,0.585,0.425,yes
+2026-05-24,KXMLBGAME-26MAY241410SEAKC,Kansas City Royals,Seattle Mariners,Kansas City Royals,Kansas City Royals,1,1,1.5,Seattle Mariners,5,8.5,0.46499999999999997,0.535,yes
+2026-05-24,KXMLBGAME-26MAY241335DETBAL,Baltimore Orioles,Detroit Tigers,Detroit Tigers,Detroit Tigers,1,-3,,,5,,0.445,0.555,no
+2026-05-24,KXMLBGAME-26MAY241335CLEPHI,Philadelphia Phillies,Cleveland Guardians,Cleveland Guardians,Cleveland Guardians,1,-1,1.5,Cleveland Guardians,3,7.5,0.515,0.485,yes
+2026-05-24,KXMLBGAME-26MAY241335MINBOS,Boston Red Sox,Minnesota Twins,Boston Red Sox,Minnesota Twins,0,1,-1.5,Boston Red Sox,3,7,0.615,0.385,no
+2026-05-24,KXMLBGAME-26MAY241335TBNYY,New York Yankees,Tampa Bay Rays,New York Yankees,New York Yankees,1,1,-1.5,New York Yankees,3,7,0.565,0.435,yes
+2026-05-24,KXMLBGAME-26MAY241340NYMMIA,Miami Marlins,New York Mets,Miami Marlins,Miami Marlins,1,2,-1.5,Miami Marlins,4,7.5,0.535,0.46499999999999997,yes
+2026-05-24,KXMLBGAME-26MAY241215PITTOR,Toronto Blue Jays,Pittsburgh Pirates,Pittsburgh Pirates,Pittsburgh Pirates,1,-1,-1.5,Toronto Blue Jays,5,7.5,0.385,0.615,yes
+2026-05-23,KXMLBGAME-26MAY232210COLAZ,Arizona Diamondbacks,Colorado Rockies,Arizona Diamondbacks,Arizona Diamondbacks,1,4,-1.5,Arizona Diamondbacks,10,9.5,0.635,0.365,yes
+2026-05-23,KXMLBGAME-26MAY232205TEXLAA,Los Angeles Angels,Texas Rangers,Texas Rangers,Los Angeles Angels,0,-1,1.5,Texas Rangers,5,7.5,0.565,0.435,no
+2026-05-23,KXMLBGAME-26MAY232140ATHSD,San Diego Padres,Oakland Athletics,Oakland Athletics,San Diego Padres,0,-1,1.5,Oakland Athletics,7,8,0.545,0.455,no
+2026-05-23,KXMLBGAME-26MAY231915STLCIN,Cincinnati Reds,St. Louis Cardinals,St. Louis Cardinals,St. Louis Cardinals,1,-1,1.5,St. Louis Cardinals,7,10,0.505,0.5,no
+2026-05-23,KXMLBGAME-26MAY231915LADMIL,Milwaukee Brewers,Los Angeles Dodgers,Milwaukee Brewers,Los Angeles Dodgers,0,2,1.5,Los Angeles Dodgers,8,8.5,0.485,0.525,no
+2026-05-23,KXMLBGAME-26MAY231605CWSSF,San Francisco Giants,Chicago White Sox,Chicago White Sox,San Francisco Giants,0,-2,1.5,Chicago White Sox,6,9,0.495,0.505,no
+2026-05-23,KXMLBGAME-26MAY231610SEAKC,Kansas City Royals,Seattle Mariners,Seattle Mariners,Kansas City Royals,0,-2,1.5,Seattle Mariners,4,8.5,0.535,0.475,no
+2026-05-23,KXMLBGAME-26MAY231610NYMMIA,Miami Marlins,New York Mets,New York Mets,Miami Marlins,0,-3,1.5,New York Mets,5,8,0.495,0.515,no
+2026-05-23,KXMLBGAME-26MAY231605CLEPHI,Philadelphia Phillies,Cleveland Guardians,Philadelphia Phillies,Philadelphia Phillies,1,2,-1.5,Philadelphia Phillies,8,7,0.615,0.385,yes
+2026-05-23,KXMLBGAME-26MAY231610WSHATL,Atlanta Braves,Washington Nationals,Atlanta Braves,Washington Nationals,0,5,-1.5,Atlanta Braves,9,8.5,0.605,0.395,no
+2026-05-23,KXMLBGAME-26MAY231610MINBOS,Boston Red Sox,Minnesota Twins,Boston Red Sox,Minnesota Twins,0,1,-1.5,Boston Red Sox,7,7.5,0.535,0.46499999999999997,no
+2026-05-23,KXMLBGAME-26MAY231507PITTOR,Toronto Blue Jays,Pittsburgh Pirates,Pittsburgh Pirates,Toronto Blue Jays,0,-2,1.5,Pittsburgh Pirates,4,7.5,0.585,0.415,no
+2026-05-23,KXMLBGAME-26MAY231420HOUCHC,Chicago Cubs,Houston Astros,Houston Astros,Houston Astros,1,-4,-1.5,Chicago Cubs,6,7,0.425,0.585,yes
+2026-05-22,KXMLBGAME-26MAY222215CWSSF,San Francisco Giants,Chicago White Sox,San Francisco Giants,Chicago White Sox,0,1,1.5,Chicago White Sox,11,7,0.485,0.515,no
+2026-05-22,KXMLBGAME-26MAY222140COLAZ,Arizona Diamondbacks,Colorado Rockies,Arizona Diamondbacks,Colorado Rockies,0,4,-1.5,Arizona Diamondbacks,6,9,0.665,0.335,no
+2026-05-22,KXMLBGAME-26MAY222140ATHSD,San Diego Padres,Oakland Athletics,Oakland Athletics,San Diego Padres,0,-1,-1.5,San Diego Padres,5,7.5,0.46499999999999997,0.535,no
+2026-05-22,KXMLBGAME-26MAY222138TEXLAA,Los Angeles Angels,Texas Rangers,Texas Rangers,Los Angeles Angels,0,-3,1.5,Texas Rangers,5,7.5,0.605,0.405,no
+2026-05-22,KXMLBGAME-26MAY221940LADMIL,Milwaukee Brewers,Los Angeles Dodgers,Milwaukee Brewers,Milwaukee Brewers,1,2,1.5,Los Angeles Dodgers,8,8.5,0.505,0.495,yes
+2026-05-22,KXMLBGAME-26MAY221940SEAKC,Kansas City Royals,Seattle Mariners,Kansas City Royals,Seattle Mariners,0,1,1.5,Seattle Mariners,9,8,0.485,0.515,no
+2026-05-22,KXMLBGAME-26MAY221907PITTOR,Toronto Blue Jays,Pittsburgh Pirates,Pittsburgh Pirates,Toronto Blue Jays,0,-1,-1.5,Toronto Blue Jays,3,8,0.405,0.595,no
+2026-05-22,KXMLBGAME-26MAY221910MINBOS,Boston Red Sox,Minnesota Twins,Boston Red Sox,Minnesota Twins,0,1,-1.5,Boston Red Sox,5,7,0.575,0.425,no
+2026-05-22,KXMLBGAME-26MAY221915DETBAL,Baltimore Orioles,Detroit Tigers,Detroit Tigers,Baltimore Orioles,0,-3,-1.5,Baltimore Orioles,7,8,0.455,0.555,no
+2026-05-22,KXMLBGAME-26MAY221915WSHATL,Atlanta Braves,Washington Nationals,Atlanta Braves,Atlanta Braves,1,1,-1.5,Atlanta Braves,5,8.5,0.645,0.355,yes
+2026-05-22,KXMLBGAME-26MAY221910NYMMIA,Miami Marlins,New York Mets,New York Mets,Miami Marlins,0,-4,1.5,New York Mets,6,8,0.495,0.515,no
+2026-05-22,KXMLBGAME-26MAY221905TBNYY,New York Yankees,Tampa Bay Rays,Tampa Bay Rays,Tampa Bay Rays,1,-1,-1.5,New York Yankees,3,7.5,0.435,0.575,yes
+2026-05-22,KXMLBGAME-26MAY221840CLEPHI,Philadelphia Phillies,Cleveland Guardians,Philadelphia Phillies,Cleveland Guardians,0,2,-1.5,Philadelphia Phillies,6,6.5,0.625,0.375,no
+2026-05-22,KXMLBGAME-26MAY221420HOUCHC,Chicago Cubs,Houston Astros,Chicago Cubs,Houston Astros,0,1,-1.5,Chicago Cubs,5,7,0.575,0.435,no
+2026-05-21,KXMLBGAME-26MAY212138ATHLAA,Los Angeles Angels,Oakland Athletics,Los Angeles Angels,Oakland Athletics,0,2,1.5,Oakland Athletics,4,8.5,0.535,0.475,no
+2026-05-21,KXMLBGAME-26MAY212140COLAZ,Arizona Diamondbacks,Colorado Rockies,Arizona Diamondbacks,Arizona Diamondbacks,1,2,-1.5,Arizona Diamondbacks,8,9.5,0.655,0.345,yes
+2026-05-21,KXMLBGAME-26MAY211905TORNYY,New York Yankees,Toronto Blue Jays,New York Yankees,Toronto Blue Jays,0,2,-1.5,New York Yankees,6,8.5,0.565,0.435,no
+2026-05-21,KXMLBGAME-26MAY211840ATLMIA,Miami Marlins,Atlanta Braves,Atlanta Braves,Atlanta Braves,1,-1,1.5,Atlanta Braves,5,7.5,0.565,0.435,yes
+2026-05-21,KXMLBGAME-26MAY211605NYMWSH,Washington Nationals,New York Mets,New York Mets,New York Mets,1,-3,1.5,New York Mets,7,7.5,0.515,0.495,yes
+2026-05-21,KXMLBGAME-26MAY211315PITSTL,St. Louis Cardinals,Pittsburgh Pirates,Pittsburgh Pirates,Pittsburgh Pirates,1,-1,1.5,Pittsburgh Pirates,7,7,0.535,0.475,yes
+2026-05-21,KXMLBGAME-26MAY211310CLEDET,Detroit Tigers,Cleveland Guardians,Cleveland Guardians,Cleveland Guardians,1,-1,1.5,Cleveland Guardians,5,7,0.475,0.535,yes
+2026-05-20,KXMLBGAME-26MAY202138ATHLAA,Los Angeles Angels,Oakland Athletics,Oakland Athletics,Oakland Athletics,1,-1,1.5,Oakland Athletics,7,9.5,0.545,0.46499999999999997,yes
+2026-05-20,KXMLBGAME-26MAY202040LADSD,San Diego Padres,Los Angeles Dodgers,San Diego Padres,Los Angeles Dodgers,0,2,1.5,Los Angeles Dodgers,4,7.5,0.365,0.645,no
+2026-05-20,KXMLBGAME-26MAY201940MILCHC,Chicago Cubs,Milwaukee Brewers,Milwaukee Brewers,Milwaukee Brewers,1,-3,1.5,Milwaukee Brewers,9,6.5,0.485,0.515,yes
+2026-05-20,KXMLBGAME-26MAY201940BOSKC,Kansas City Royals,Boston Red Sox,Boston Red Sox,Boston Red Sox,1,-2,1.5,Boston Red Sox,4,7.5,0.475,0.525,yes
+2026-05-20,KXMLBGAME-26MAY201945PITSTL,St. Louis Cardinals,Pittsburgh Pirates,St. Louis Cardinals,Pittsburgh Pirates,0,4,1.5,Pittsburgh Pirates,8,7.5,0.515,0.485,no
+2026-05-20,KXMLBGAME-26MAY201905TORNYY,New York Yankees,Toronto Blue Jays,New York Yankees,Toronto Blue Jays,0,2,-1.5,New York Yankees,6,8.5,0.615,0.385,no
+2026-05-20,KXMLBGAME-26MAY201840ATLMIA,Miami Marlins,Atlanta Braves,Miami Marlins,Atlanta Braves,0,1,1.5,Atlanta Braves,9,7,0.365,0.635,no
+2026-05-20,KXMLBGAME-26MAY201845NYMWSH,Washington Nationals,New York Mets,New York Mets,Washington Nationals,0,-5,1.5,New York Mets,15,10,0.535,0.46499999999999997,no
+2026-05-20,KXMLBGAME-26MAY201840CLEDET,Detroit Tigers,Cleveland Guardians,Cleveland Guardians,Cleveland Guardians,1,-1,1.5,Cleveland Guardians,9,7.5,0.525,0.485,yes
+2026-05-20,KXMLBGAME-26MAY201610CWSSEA,Seattle Mariners,Chicago White Sox,Seattle Mariners,Seattle Mariners,1,2,-1.5,Seattle Mariners,8,7.5,0.565,0.435,yes
+2026-05-20,KXMLBGAME-26MAY201540SFAZ,Arizona Diamondbacks,San Francisco Giants,Arizona Diamondbacks,Arizona Diamondbacks,1,2,1.5,San Francisco Giants,8,8.5,0.515,0.485,yes
+2026-05-20,KXMLBGAME-26MAY201510TEXCOL,Colorado Rockies,Texas Rangers,Colorado Rockies,Texas Rangers,0,3,1.5,Texas Rangers,11,10,0.46499999999999997,0.535,no
+2026-05-20,KXMLBGAME-26MAY201340HOUMIN,Minnesota Twins,Houston Astros,Minnesota Twins,Minnesota Twins,1,2,-1.5,Minnesota Twins,6,8,0.565,0.435,yes
+2026-05-20,KXMLBGAME-26MAY201310BALTB,Tampa Bay Rays,Baltimore Orioles,Tampa Bay Rays,Tampa Bay Rays,1,1,1.5,Baltimore Orioles,7,8.5,0.525,0.485,yes
+2026-05-20,KXMLBGAME-26MAY201305CINPHI,Philadelphia Phillies,Cincinnati Reds,Cincinnati Reds,Cincinnati Reds,1,-1,-1.5,Philadelphia Phillies,11,9.5,0.425,0.575,yes
+2026-05-19,KXMLBGAME-26MAY192140CWSSEA,Seattle Mariners,Chicago White Sox,Chicago White Sox,Chicago White Sox,1,-2,-1.5,Seattle Mariners,8,8,0.435,0.565,yes
+2026-05-19,KXMLBGAME-26MAY192140LADSD,San Diego Padres,Los Angeles Dodgers,Los Angeles Dodgers,Los Angeles Dodgers,1,-2,1.5,Los Angeles Dodgers,8,8,0.605,0.395,yes
+2026-05-19,KXMLBGAME-26MAY192138ATHLAA,Los Angeles Angels,Oakland Athletics,Oakland Athletics,Oakland Athletics,1,-1,-1.5,Los Angeles Angels,9,9,0.445,0.555,yes
+2026-05-19,KXMLBGAME-26MAY192140SFAZ,Arizona Diamondbacks,San Francisco Giants,Arizona Diamondbacks,Arizona Diamondbacks,1,1,1.5,San Francisco Giants,7,8.5,0.535,0.46499999999999997,yes
+2026-05-19,KXMLBGAME-26MAY192040TEXCOL,Colorado Rockies,Texas Rangers,Colorado Rockies,Texas Rangers,0,1,1.5,Texas Rangers,9,10,0.505,0.495,no
+2026-05-19,KXMLBGAME-26MAY191945PITSTL,St. Louis Cardinals,Pittsburgh Pirates,St. Louis Cardinals,St. Louis Cardinals,1,2,1.5,Pittsburgh Pirates,6,8,0.515,0.485,yes
+2026-05-19,KXMLBGAME-26MAY191940BOSKC,Kansas City Royals,Boston Red Sox,Boston Red Sox,Boston Red Sox,1,-1,1.5,Boston Red Sox,3,7.5,0.545,0.455,yes
+2026-05-19,KXMLBGAME-26MAY191940MILCHC,Chicago Cubs,Milwaukee Brewers,Milwaukee Brewers,Milwaukee Brewers,1,-1,1.5,Milwaukee Brewers,5,7.5,0.515,0.485,yes
+2026-05-19,KXMLBGAME-26MAY191940HOUMIN,Minnesota Twins,Houston Astros,Minnesota Twins,Houston Astros,0,6,-1.5,Minnesota Twins,10,8.5,0.565,0.435,no
+2026-05-19,KXMLBGAME-26MAY191905TORNYY,New York Yankees,Toronto Blue Jays,New York Yankees,New York Yankees,1,3,-1.5,New York Yankees,5,8.5,0.545,0.455,yes
+2026-05-19,KXMLBGAME-26MAY191845NYMWSH,Washington Nationals,New York Mets,Washington Nationals,Washington Nationals,1,1,1.5,New York Mets,7,8.5,0.435,0.565,yes
+2026-05-19,KXMLBGAME-26MAY191840BALTB,Tampa Bay Rays,Baltimore Orioles,Tampa Bay Rays,Tampa Bay Rays,1,5,1.5,Baltimore Orioles,7,7.5,0.515,0.495,yes
+2026-05-19,KXMLBGAME-26MAY191840CLEDET,Detroit Tigers,Cleveland Guardians,Cleveland Guardians,Cleveland Guardians,1,-3,1.5,Cleveland Guardians,5,8,0.595,0.405,yes
+2026-05-19,KXMLBGAME-26MAY191840CINPHI,Philadelphia Phillies,Cincinnati Reds,Philadelphia Phillies,Cincinnati Reds,0,1,-1.5,Philadelphia Phillies,7,8.5,0.565,0.435,no
+2026-05-19,KXMLBGAME-26MAY191610ATLMIA,Miami Marlins,Atlanta Braves,Miami Marlins,Atlanta Braves,0,2,1.5,Atlanta Braves,12,8,0.435,0.565,no
