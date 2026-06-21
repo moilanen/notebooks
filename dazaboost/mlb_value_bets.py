@@ -26,8 +26,9 @@ from datetime import date, datetime, timezone
 try:
     from zoneinfo import ZoneInfo
     EASTERN = ZoneInfo("America/New_York")
+    CENTRAL = ZoneInfo("America/Chicago")
 except Exception:
-    EASTERN = None
+    EASTERN = CENTRAL = None
 
 # ---------------------------------------------------------------- config
 DAZABOOST_URL = ("https://www.dazaboost.ai/api/mlb/games"
@@ -79,22 +80,74 @@ def post_to_slack(webhook_url, text):
         return False
 
 def build_slack_message(d, week, bets, bankroll, kelly_frac):
-    """Format the bet card for Slack (mrkdwn)."""
-    head = f":baseball: *MLB value bets — {d.isoformat()}* (week {week}, ${bankroll:,.0f} bankroll, {int(kelly_frac*100)}% Kelly)"
+    """Format the bet card for Slack (mrkdwn). Sizing shown as % of bankroll only — no dollar amounts."""
+    head = f":baseball: *MLB value bets — {d.isoformat()}* (week {week}, {int(kelly_frac*100)}% Kelly)"
     if not bets:
-        return head + "\n_No qualifying contrarian-dog bets today._"
+        return head + "\n_No qualifying contrarian-dog bets._"
     lines = [head, f"*{len(bets)} qualifying play(s):*"]
-    total = 0.0
+    total_pct = 0.0
     for x in bets:
-        stake = x["kelly"] * bankroll
-        total += stake
-        ctr = int(stake / x["ask"]) if x["ask"] else 0
+        pct = x["kelly"] * 100
+        total_pct += pct
         lines.append(
             f"• *BUY {x['pick']}* @ {int(round(x['ask']*100))}¢  ({x['matchup']})\n"
-            f"    edge {(x['p']-x['ask'])*100:+.1f} pts · net EV {x['ev']*100:+.1f}¢/contract · "
-            f"stake {x['kelly']*100:.1f}% = ${stake:,.0f} (~{ctr} contracts) · limit @ {int(round(x['ask']*100))}¢")
-    lines.append(f"_Total exposure: ${total:,.0f} ({total/bankroll*100:.1f}% of bankroll). Limit orders only._")
+            f"    edge {(x['p']-x['ask'])*100:+.1f} pts · EV {x['ev']*100:+.1f}¢/contract · "
+            f"size *{pct:.1f}% of bankroll* · limit @ {int(round(x['ask']*100))}¢")
+    lines.append(f"_Total size: {total_pct:.1f}% of bankroll. Limit orders only._")
     return "\n".join(lines)
+
+
+# ---------------------------------------------------------------- Kalshi authenticated balance
+def kalshi_private_key(env):
+    """Load the RSA private key from KALSHI_PRIVATE_KEY_PATH (a .pem file) or KALSHI_PRIVATE_KEY (\\n-escaped)."""
+    pem = None
+    path = env.get("KALSHI_PRIVATE_KEY_PATH") or os.environ.get("KALSHI_PRIVATE_KEY_PATH")
+    if path and os.path.exists(os.path.expanduser(path)):
+        pem = open(os.path.expanduser(path)).read()
+    else:
+        raw = env.get("KALSHI_PRIVATE_KEY") or os.environ.get("KALSHI_PRIVATE_KEY")
+        if raw:
+            pem = raw.replace("\\n", "\n")
+    if not pem:
+        return None
+    from cryptography.hazmat.primitives.serialization import load_pem_private_key
+    return load_pem_private_key(pem.encode(), password=None)
+
+def kalshi_balance_dollars(env):
+    """Signed GET /portfolio/balance. Returns dollars (float) or None if unavailable."""
+    key_id = env.get("api_key_kalshi") or os.environ.get("api_key_kalshi")
+    try:
+        pk = kalshi_private_key(env)
+    except Exception as e:
+        print(f"  ! could not load Kalshi private key: {e}", file=sys.stderr); return None
+    if not key_id or pk is None:
+        return None
+    from cryptography.hazmat.primitives import hashes
+    from cryptography.hazmat.primitives.asymmetric import padding
+    import base64
+    ts = str(int(time.time() * 1000))
+    method, path = "GET", "/trade-api/v2/portfolio/balance"
+    try:
+        sig = base64.b64encode(pk.sign(
+            (ts + method + path).encode(),
+            padding.PSS(mgf=padding.MGF1(hashes.SHA256()), salt_length=padding.PSS.DIGEST_LENGTH),
+            hashes.SHA256())).decode()
+        headers = {"KALSHI-ACCESS-KEY": key_id, "KALSHI-ACCESS-SIGNATURE": sig,
+                   "KALSHI-ACCESS-TIMESTAMP": ts, "Accept": "application/json"}
+        d = http_json("https://api.elections.kalshi.com" + path, headers=headers)
+    except Exception as e:
+        print(f"  ! Kalshi balance fetch failed: {e}", file=sys.stderr); return None
+    cents = d.get("balance")
+    return cents / 100.0 if cents is not None else None
+
+def resolve_bankroll(args):
+    """Bankroll = --bankroll override, else live Kalshi balance, else $1000 fallback."""
+    if args.bankroll is not None:
+        return float(args.bankroll), "override"
+    bal = kalshi_balance_dollars(load_env())
+    if bal is not None:
+        return bal, "live Kalshi balance"
+    return 1000.0, "fallback $1000 (no live balance — add KALSHI_PRIVATE_KEY_PATH to .env)"
 
 def kalshi_fee(price):
     """Kalshi trading fee per contract (charged on entry), in dollars."""
@@ -270,6 +323,65 @@ def settle_and_report(path):
 
 
 # ---------------------------------------------------------------- modes
+def fmt_gametime(epoch):
+    """UTC epoch -> local Central clock time like '7:05pm CT'."""
+    if epoch is None: return "  ??:?? "
+    tz = CENTRAL or timezone.utc
+    dt = datetime.fromtimestamp(epoch, tz)
+    return dt.strftime("%I:%M%p").lstrip("0").lower() + (" CT" if CENTRAL else " UTC")
+
+KIND_TAG = {"bet": "🟢 DOG BET", "favorite": "favorite", "dog_unpriced": "dog (no price yet)",
+            "dog_noev": "dog (-EV)", "no_line": "no casino line", "no_pick": "no pick"}
+
+def build_preview_slack(d, rows, kelly_frac):
+    """Morning preview: full slate with game times; highlights qualifying bets. % sizing only."""
+    bets = [r for r in rows if r["kind"] == "bet"]
+    head = (f":baseball: *MLB preview — {d.isoformat()}*  •  {len(rows)} games  •  "
+            f"{len(bets)} qualifying bet(s)  ({int(kelly_frac*100)}% Kelly)")
+    lines = [head]
+    if bets:
+        lines.append("*Expected bets (contrarian dogs):*")
+        for r in bets:
+            lines.append(f"• {fmt_gametime(r['start'])}  *BUY {r['pick']}* @ {int(round(r['ask']*100))}¢ "
+                         f"({r['matchup']}) — edge {(r['p']-r['ask'])*100:+.1f} pts · size *{r['kelly']*100:.1f}% of bankroll*")
+    lines.append("*Full slate:*")
+    for r in rows:
+        tag = KIND_TAG.get(r["kind"], r["kind"])
+        lines.append(f"• {fmt_gametime(r['start'])}  {r['matchup']} — pick {r['pick'] or '?'} [{tag}]")
+    lines.append("_Preview only — no bets placed. Each bet fires ~30 min before its game._")
+    return "\n".join(lines)
+
+def run_preview(args, kmarkets):
+    """Full-slate morning preview: print + Slack, write nothing."""
+    today = (datetime.now(EASTERN).date() if EASTERN else date.today())
+    week = args.week or week_for(today)
+    games, used_week = fetch_week_with_fallback(week)
+    datestr = today.strftime("%Y%m%d")
+    todays = [g for g in games if g.get("gameDate") == datestr and g.get("gameStatus") == "scheduled"]
+    rows = []
+    for g in todays:
+        r = evaluate_game(g, kmarkets, args.kelly, args.min_edge_cents)
+        try: r["start"] = int(float(g["gameTimeEpoch"]))
+        except (KeyError, ValueError, TypeError): r["start"] = None
+        rows.append(r)
+    rows.sort(key=lambda r: r["start"] or 0)
+    bets = [r for r in rows if r["kind"] == "bet"]
+
+    print(f"=== MLB preview — {today.isoformat()} (week {used_week}) — "
+          f"{len(rows)} games, {len(bets)} qualifying bet(s) ===")
+    for r in rows:
+        extra = (f"  @ {int(round(r['ask']*100))}c size {r['kelly']*100:.1f}%"
+                 if r["kind"] == "bet" else "")
+        print(f"  {fmt_gametime(r['start']):>10}  {r['matchup']:40s} pick {(r['pick'] or '?'):20s} [{KIND_TAG.get(r['kind'], r['kind'])}]{extra}")
+
+    if args.slack or args.slack_always:
+        webhook = os.environ.get("SLACK_WEBHOOK_URL") or load_env().get("SLACK_WEBHOOK_URL")
+        if not webhook:
+            print("  ! --slack set but SLACK_WEBHOOK_URL not found", file=sys.stderr)
+        elif post_to_slack(webhook, build_preview_slack(today, rows, args.kelly)):
+            print(f"  Posted preview to Slack ({len(rows)} games, {len(bets)} bets).")
+
+
 def run_pregame(args, kmarkets):
     """Poll mode: alert each game once when it is within --pregame-window minutes of first pitch."""
     now = time.time()
@@ -297,11 +409,14 @@ def run_pregame(args, kmarkets):
         state.add(key); decided += 1                      # decision made; don't revisit
         if r["kind"] == "bet":
             new_bets.append(r)
-    save_state(state_path, state)
-
-    if new_bets:                                          # record fired bets for ROI tracking
-        n = log_bets(args.bet_log, new_bets, args.bankroll, args.kelly)
-        if n: print(f"    logged {n} bet(s) to {args.bet_log}")
+    dry = getattr(args, "dry_run", False)
+    if dry:
+        print("    [DRY RUN] no state write, no bet log, no Slack")
+    else:
+        save_state(state_path, state)
+        if new_bets:                                      # record fired bets for ROI tracking
+            n = log_bets(args.bet_log, new_bets, args.bankroll, args.kelly)
+            if n: print(f"    logged {n} bet(s) to {args.bet_log}")
 
     stamp = datetime.fromtimestamp(now, timezone.utc).strftime("%Y-%m-%d %H:%MZ")
     print(f"[{stamp}] pregame poll (window {args.pregame_window}m): "
@@ -310,7 +425,7 @@ def run_pregame(args, kmarkets):
         print(f"    T-{mins:>3}m  {r['matchup']:38s} {r['kind']}"
               + (f"  pick {r['pick']} @ {int(round(r['ask']*100))}c EV {r['ev']*100:+.1f}c" if r.get("ask") else ""))
 
-    if (args.slack or args.slack_always) and new_bets:
+    if (args.slack or args.slack_always) and new_bets and not dry:
         webhook = os.environ.get("SLACK_WEBHOOK_URL") or load_env().get("SLACK_WEBHOOK_URL")
         if not webhook:
             print("  ! --slack set but SLACK_WEBHOOK_URL not found", file=sys.stderr)
@@ -325,7 +440,8 @@ def main():
     ap = argparse.ArgumentParser(description="MLB value-bet screener (Dazaboost x Kalshi).")
     ap.add_argument("--date", help="YYYYMMDD (default: today, US/Eastern)")
     ap.add_argument("--week", type=int, help="override Dazaboost week param")
-    ap.add_argument("--bankroll", type=float, default=1000.0)
+    ap.add_argument("--bankroll", type=float, default=None,
+                    help="override bankroll; default = live Kalshi balance (falls back to $1000)")
     ap.add_argument("--kelly", type=float, default=0.25, help="Kelly fraction (default 0.25)")
     ap.add_argument("--min-edge-cents", type=float, default=0.0, help="min net EV (cents/contract) to bet")
     ap.add_argument("--slack", action="store_true", help="post the card to Slack (webhook from .env SLACK_WEBHOOK_URL)")
@@ -338,12 +454,30 @@ def main():
                     help="CSV of fired bets + outcomes (default data/bet_log.csv)")
     ap.add_argument("--settle", action="store_true",
                     help="fill outcomes for logged bets from Kalshi settlements and print live ROI")
+    ap.add_argument("--dry-run", action="store_true",
+                    help="poll mode: show what would happen but do NOT post Slack, write state, or log bets")
+    ap.add_argument("--preview", action="store_true",
+                    help="full-slate morning preview with game times (writes nothing); add --slack to post")
     args = ap.parse_args()
 
     # Settle/report mode: update outcomes for logged bets and print realized ROI.
     if args.settle:
         settle_and_report(args.bet_log)
         return
+
+    # Preview mode: full-slate morning heads-up with game times. Writes nothing; % sizing only.
+    if args.preview:
+        try:
+            kmarkets = http_json(KALSHI_MKTS)["markets"]
+        except Exception as e:
+            print(f"  ! Kalshi fetch failed: {e}", file=sys.stderr); kmarkets = []
+        run_preview(args, kmarkets)
+        return
+
+    # Resolve bankroll (live Kalshi balance unless --bankroll override) for any sizing mode.
+    bankroll, src = resolve_bankroll(args)
+    args.bankroll = bankroll
+    print(f"    bankroll: ${bankroll:,.2f}  ({src})")
 
     # Pre-game poll mode: evaluate only imminent games, alert each once. (run every ~10 min)
     if args.pregame_window:

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>ai.dazaboost.mlbpreview</string>
+
+    <!-- Morning preview: posts the full slate (with game times, in CT) and the expected
+         contrarian-dog bets (% sizing only) to Slack. Writes nothing (no state, no bet log).
+         Distinct from the per-game poller, which places the actual bets ~30 min pre-game. -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/jake/Dropbox/sbx/notebook/venv/bin/python3</string>
+        <string>/Users/jake/Dropbox/sbx/notebook/dazaboost/mlb_value_bets.py</string>
+        <string>--preview</string>
+        <string>--slack</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/jake/Dropbox/sbx/notebook/dazaboost</string>
+
+    <!-- 9:00am local (Mac is America/Chicago = CST/CDT; launchd handles DST) -->
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key><integer>9</integer>
+        <key>Minute</key><integer>0</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/Users/jake/Dropbox/sbx/notebook/dazaboost/data/mlbpreview.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/jake/Dropbox/sbx/notebook/dazaboost/data/mlbpreview.log</string>
+</dict>
+</plist>
