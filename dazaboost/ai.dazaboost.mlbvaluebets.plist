@@ -17,6 +17,8 @@
         <string>--pregame-window</string>
         <string>35</string>
         <string>--slack</string>
+        <string>--live</string>
+        <string>--live-test</string>
     </array>
 
     <!-- so the app finds .env (SLACK_WEBHOOK_URL) and data/alerted.json -->

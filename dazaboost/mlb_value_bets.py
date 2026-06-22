@@ -113,32 +113,63 @@ def kalshi_private_key(env):
     from cryptography.hazmat.primitives.serialization import load_pem_private_key
     return load_pem_private_key(pem.encode(), password=None)
 
-def kalshi_balance_dollars(env):
-    """Signed GET /portfolio/balance. Returns dollars (float) or None if unavailable."""
+def kalshi_signed(method, path, env, body=None):
+    """Signed Kalshi request (GET/POST). `path` includes /trade-api/v2/... Returns parsed JSON.
+    Raises on failure (callers decide how to handle)."""
     key_id = env.get("api_key_kalshi") or os.environ.get("api_key_kalshi")
-    try:
-        pk = kalshi_private_key(env)
-    except Exception as e:
-        print(f"  ! could not load Kalshi private key: {e}", file=sys.stderr); return None
+    pk = kalshi_private_key(env)
     if not key_id or pk is None:
-        return None
+        raise RuntimeError("missing Kalshi key id or private key")
     from cryptography.hazmat.primitives import hashes
     from cryptography.hazmat.primitives.asymmetric import padding
     import base64
     ts = str(int(time.time() * 1000))
-    method, path = "GET", "/trade-api/v2/portfolio/balance"
+    sign_path = path.split("?", 1)[0]                      # Kalshi signs the path WITHOUT query string
+    sig = base64.b64encode(pk.sign(
+        (ts + method + sign_path).encode(),
+        padding.PSS(mgf=padding.MGF1(hashes.SHA256()), salt_length=padding.PSS.DIGEST_LENGTH),
+        hashes.SHA256())).decode()
+    headers = {"KALSHI-ACCESS-KEY": key_id, "KALSHI-ACCESS-SIGNATURE": sig,
+               "KALSHI-ACCESS-TIMESTAMP": ts, "Accept": "application/json"}
+    url = "https://api.elections.kalshi.com" + path
+    data = None
+    if body is not None:
+        headers["Content-Type"] = "application/json"
+        data = json.dumps(body).encode()
+    req = urllib.request.Request(url, data=data, headers=headers, method=method)
+    with urllib.request.urlopen(req, timeout=30) as r:
+        return json.loads(r.read())
+
+def kalshi_balance_dollars(env):
+    """Signed GET /portfolio/balance. Returns dollars (float) or None if unavailable."""
     try:
-        sig = base64.b64encode(pk.sign(
-            (ts + method + path).encode(),
-            padding.PSS(mgf=padding.MGF1(hashes.SHA256()), salt_length=padding.PSS.DIGEST_LENGTH),
-            hashes.SHA256())).decode()
-        headers = {"KALSHI-ACCESS-KEY": key_id, "KALSHI-ACCESS-SIGNATURE": sig,
-                   "KALSHI-ACCESS-TIMESTAMP": ts, "Accept": "application/json"}
-        d = http_json("https://api.elections.kalshi.com" + path, headers=headers)
+        d = kalshi_signed("GET", "/trade-api/v2/portfolio/balance", env)
     except Exception as e:
         print(f"  ! Kalshi balance fetch failed: {e}", file=sys.stderr); return None
     cents = d.get("balance")
     return cents / 100.0 if cents is not None else None
+
+def get_kalshi_order(env, order_id):
+    """Fetch a single order to report its fill status. Returns dict or None."""
+    try:
+        d = kalshi_signed("GET", f"/trade-api/v2/portfolio/orders/{order_id}", env)
+        return d.get("order", d)
+    except Exception:
+        return None
+
+def place_kalshi_order(env, ticker, limit_price_cents, count, client_order_id):
+    """Place a LIMIT BUY YES order. Idempotent via client_order_id. Returns (ok, info)."""
+    body = {"ticker": ticker, "client_order_id": client_order_id, "side": "yes",
+            "action": "buy", "type": "limit", "count": int(count),
+            "yes_price": int(limit_price_cents)}
+    try:
+        d = kalshi_signed("POST", "/trade-api/v2/portfolio/orders", env, body=body)
+        order = d.get("order", d)
+        return True, {"order_id": order.get("order_id"), "status": order.get("status")}
+    except urllib.error.HTTPError as e:
+        return False, {"error": f"HTTP {e.code}: {e.read().decode()[:200]}"}
+    except Exception as e:
+        return False, {"error": str(e)}
 
 def resolve_bankroll(args):
     """Bankroll = --bankroll override, else live Kalshi balance, else $1000 fallback."""
@@ -188,12 +219,18 @@ def datecode_for(g):
     gd = g["gameDate"]
     return f"{gd[2:4]}{MON3[int(gd[4:6])]}{int(gd[6:8]):02d}"
 
-def ask_for(kmarkets, abbr, datecode):
+def market_for(kmarkets, abbr, datecode):
+    """Return the Kalshi market dict for this team+date, or None."""
     if not abbr: return None
     for m in kmarkets:
         if datecode in m["ticker"] and m["ticker"].rsplit("-", 1)[-1] == abbr:
-            a = m.get("yes_ask_dollars"); return float(a) if a else None
+            return m
     return None
+
+def ask_for(kmarkets, abbr, datecode):
+    m = market_for(kmarkets, abbr, datecode)
+    if not m: return None
+    a = m.get("yes_ask_dollars"); return float(a) if a else None
 
 def evaluate_game(g, kmarkets, kelly_frac, min_edge_cents):
     """Classify one game and, if it's a +EV contrarian-dog, compute bet sizing.
@@ -205,8 +242,10 @@ def evaluate_game(g, kmarkets, kelly_frac, min_edge_cents):
     if casino_favorite(g) == pick:     r["kind"] = "favorite"; return r
     conv = abs(g["predictedSpread"] + g["casinoSpread"])
     p = P_DOG_MODCONV if conv <= MODCONV_RUNS else P_DOG
-    ask = ask_for(kmarkets, TEAM2ABBR.get(pick), datecode_for(g))
+    mkt = market_for(kmarkets, TEAM2ABBR.get(pick), datecode_for(g))
+    ask = float(mkt["yes_ask_dollars"]) if mkt and mkt.get("yes_ask_dollars") else None
     if ask is None: r.update(kind="dog_unpriced", p=p, conv=conv); return r
+    r["ticker"] = mkt["ticker"]
     ev = p - ask - kalshi_fee(ask)
     b = (1 - ask) / ask
     kelly = max(0.0, (p * b - (1 - p)) / b) * kelly_frac
@@ -237,7 +276,8 @@ def fetch_week_with_fallback(week):
 import csv
 BET_LOG_COLS = ["logged_at_utc", "gameDate", "gameId", "matchup", "pick", "kalshi_abbr",
                 "ask", "win_prob", "conviction", "ev_cents", "kelly_frac",
-                "stake_dollars", "contracts", "status", "result", "pnl_dollars", "settled_at_utc"]
+                "stake_dollars", "contracts", "status", "result", "pnl_dollars", "settled_at_utc",
+                "order_id", "order_status"]
 
 def _read_bet_log(path):
     if not os.path.exists(path): return []
@@ -382,6 +422,66 @@ def run_preview(args, kmarkets):
             print(f"  Posted preview to Slack ({len(rows)} games, {len(bets)} bets).")
 
 
+LIVE_TEST_SENTINEL = "data/live_test_done.json"
+
+def place_live_orders(args, bets):
+    """Auto-submit LIMIT BUY YES orders for qualifying dog bets. Idempotent; halts on first error.
+    Sizing: floor(stake/ask) contracts at the model's ask price (the price EV was computed on).
+
+    --live-test canary: until the sentinel exists, the FIRST qualifying bet is placed at exactly
+    1 contract, its fill is reported, the sentinel is written, and the run stops — proving the
+    pipeline end-to-end. Afterwards (sentinel present) it reverts to normal full-size live betting."""
+    env = load_env()
+    if kalshi_private_key(env) is None:
+        print("    ! live mode set but no Kalshi private key (KALSHI_PRIVATE_KEY_PATH) — NO orders placed",
+              file=sys.stderr)
+        return
+    canary = getattr(args, "live_test", False) and not os.path.exists(LIVE_TEST_SENTINEL)
+    for x in bets:
+        ticker = x.get("ticker")
+        if not ticker:
+            print(f"    ! no Kalshi ticker for {x['pick']} — skipped", file=sys.stderr); continue
+        stake = x["kelly"] * args.bankroll
+        price = x["ask"]
+        count = 1 if canary else (int(stake / price) if price > 0 else 0)
+        if count < 1:
+            print(f"    · {x['pick']}: stake ${stake:.2f} < 1 contract — skipped"); continue
+        g = x["game"]
+        coid = f"daza-{g['gameDate']}-{g['gameId']}-{TEAM2ABBR.get(x['pick'],'?')}"  # idempotent
+        cents = int(round(price * 100))
+        tag = "🐤 CANARY 1-contract TEST" if canary else "✅ LIVE ORDER"
+        ok, info = place_kalshi_order(env, ticker, cents, count, coid)
+        if ok:
+            print(f"    {tag}: BUY {count} {ticker} @ {cents}c (${count*price:.2f}) "
+                  f"order_id={info.get('order_id')} status={info.get('status')}")
+            _record_order(args.bet_log, g, x['pick'], info, count)
+            if info.get("order_id"):                       # report fill outcome
+                o = get_kalshi_order(env, info["order_id"]) or {}
+                print(f"       fill status: {o.get('status', info.get('status','?'))}  "
+                      f"filled={o.get('fill_count', o.get('taker_fill_count','?'))}/{count}")
+            if canary:                                     # one-shot: stop after the single test order
+                json.dump({"order_id": info.get("order_id"), "ticker": ticker,
+                           "placed_at": datetime.fromtimestamp(time.time(), timezone.utc).isoformat()},
+                          open(LIVE_TEST_SENTINEL, "w"))
+                print("    🐤 canary placed — full-size live betting active from the next qualifying bet.")
+                break
+        else:
+            print(f"    ! ORDER FAILED for {ticker}: {info.get('error')} — HALTING further orders",
+                  file=sys.stderr)
+            break                                          # halt-on-error: don't keep firing
+
+def _record_order(path, g, pick, info, count):
+    """Stamp the matching bet-log row with the live order id/status. Leaves status='open'
+    so --settle still resolves win/lost from Kalshi settlements later."""
+    rows = _read_bet_log(path)
+    for r in rows:
+        if r["gameDate"] == g["gameDate"] and r["gameId"] == g["gameId"] and r["pick"] == pick:
+            r["order_id"] = info.get("order_id", "")
+            r["order_status"] = info.get("status", "")
+            break
+    _write_bet_log(path, rows)
+
+
 def run_pregame(args, kmarkets):
     """Poll mode: alert each game once when it is within --pregame-window minutes of first pitch."""
     now = time.time()
@@ -411,12 +511,14 @@ def run_pregame(args, kmarkets):
             new_bets.append(r)
     dry = getattr(args, "dry_run", False)
     if dry:
-        print("    [DRY RUN] no state write, no bet log, no Slack")
+        print("    [DRY RUN] no state write, no bet log, no Slack, no orders")
     else:
         save_state(state_path, state)
         if new_bets:                                      # record fired bets for ROI tracking
             n = log_bets(args.bet_log, new_bets, args.bankroll, args.kelly)
             if n: print(f"    logged {n} bet(s) to {args.bet_log}")
+        if (getattr(args, "live", False) or getattr(args, "live_test", False)) and new_bets:
+            place_live_orders(args, new_bets)
 
     stamp = datetime.fromtimestamp(now, timezone.utc).strftime("%Y-%m-%d %H:%MZ")
     print(f"[{stamp}] pregame poll (window {args.pregame_window}m): "
@@ -458,7 +560,16 @@ def main():
                     help="poll mode: show what would happen but do NOT post Slack, write state, or log bets")
     ap.add_argument("--preview", action="store_true",
                     help="full-slate morning preview with game times (writes nothing); add --slack to post")
+    ap.add_argument("--live", action="store_true",
+                    help="REAL MONEY: auto-submit limit BUY orders on Kalshi for qualifying dog bets "
+                         "(poll mode only). Idempotent; halts on first API error.")
+    ap.add_argument("--live-test", action="store_true",
+                    help="One-shot canary: place a single 1-contract real order on the next qualifying "
+                         "dog, report the fill, then revert to full-size live betting (sentinel: "
+                         "data/live_test_done.json — delete it to re-arm the canary).")
     args = ap.parse_args()
+    if (args.live or args.live_test) and not getattr(args, "dry_run", False):
+        print("    ⚠️  LIVE TRADING ENABLED — real Kalshi orders will be placed for qualifying bets")
 
     # Settle/report mode: update outcomes for logged bets and print realized ROI.
     if args.settle:
