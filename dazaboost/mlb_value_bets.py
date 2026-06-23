@@ -113,7 +113,7 @@ def kalshi_private_key(env):
     from cryptography.hazmat.primitives.serialization import load_pem_private_key
     return load_pem_private_key(pem.encode(), password=None)
 
-def kalshi_signed(method, path, env, body=None):
+def kalshi_signed(method, path, env, body=None, host="https://api.elections.kalshi.com"):
     """Signed Kalshi request (GET/POST). `path` includes /trade-api/v2/... Returns parsed JSON.
     Raises on failure (callers decide how to handle)."""
     key_id = env.get("api_key_kalshi") or os.environ.get("api_key_kalshi")
@@ -131,7 +131,7 @@ def kalshi_signed(method, path, env, body=None):
         hashes.SHA256())).decode()
     headers = {"KALSHI-ACCESS-KEY": key_id, "KALSHI-ACCESS-SIGNATURE": sig,
                "KALSHI-ACCESS-TIMESTAMP": ts, "Accept": "application/json"}
-    url = "https://api.elections.kalshi.com" + path
+    url = host + path
     data = None
     if body is not None:
         headers["Content-Type"] = "application/json"
@@ -157,17 +157,27 @@ def get_kalshi_order(env, order_id):
     except Exception:
         return None
 
-def place_kalshi_order(env, ticker, limit_price_cents, count, client_order_id):
-    """Place a LIMIT BUY YES order. Idempotent via client_order_id. Returns (ok, info)."""
-    body = {"ticker": ticker, "client_order_id": client_order_id, "side": "yes",
-            "action": "buy", "type": "limit", "count": int(count),
-            "yes_price": int(limit_price_cents)}
+KALSHI_ORDER_HOST = "https://external-api.kalshi.com"
+KALSHI_ORDER_PATH = "/trade-api/v2/portfolio/events/orders"   # V2 create-order
+
+def place_kalshi_order(env, ticker, price_dollars, count, client_order_id):
+    """Place a LIMIT BUY-YES order via the V2 endpoint. BUY YES = side 'bid'.
+    Limit at `price_dollars`, immediate-or-cancel (fill at our price now or skip — no stale rests).
+    Idempotent via client_order_id. Returns (ok, info)."""
+    body = {"ticker": ticker, "side": "bid",
+            "count": f"{int(count)}.00",                 # fixed-point string, 2 dp
+            "price": f"{price_dollars:.4f}",             # USD fixed-point string
+            "time_in_force": "immediate_or_cancel",
+            "self_trade_prevention_type": "taker_at_cross",
+            "client_order_id": client_order_id}
     try:
-        d = kalshi_signed("POST", "/trade-api/v2/portfolio/orders", env, body=body)
+        d = kalshi_signed("POST", KALSHI_ORDER_PATH, env, body=body, host=KALSHI_ORDER_HOST)
         order = d.get("order", d)
-        return True, {"order_id": order.get("order_id"), "status": order.get("status")}
+        return True, {"order_id": order.get("order_id") or order.get("id"),
+                      "status": order.get("status"),
+                      "fill_count": order.get("fill_count") or order.get("filled_count")}
     except urllib.error.HTTPError as e:
-        return False, {"error": f"HTTP {e.code}: {e.read().decode()[:200]}"}
+        return False, {"error": f"HTTP {e.code}: {e.read().decode()[:300]}"}
     except Exception as e:
         return False, {"error": str(e)}
 
@@ -447,18 +457,16 @@ def place_live_orders(args, bets):
         if count < 1:
             print(f"    · {x['pick']}: stake ${stake:.2f} < 1 contract — skipped"); continue
         g = x["game"]
-        coid = f"daza-{g['gameDate']}-{g['gameId']}-{TEAM2ABBR.get(x['pick'],'?')}"  # idempotent
+        safe_gid = g["gameId"].replace("@", "").replace("_", "-")   # Kalshi rejects '@' in client_order_id
+        coid = f"daza-{safe_gid}-{TEAM2ABBR.get(x['pick'],'?')}"     # idempotent, alphanumeric+dash only
         cents = int(round(price * 100))
         tag = "🐤 CANARY 1-contract TEST" if canary else "✅ LIVE ORDER"
-        ok, info = place_kalshi_order(env, ticker, cents, count, coid)
+        ok, info = place_kalshi_order(env, ticker, price, count, coid)
         if ok:
             print(f"    {tag}: BUY {count} {ticker} @ {cents}c (${count*price:.2f}) "
-                  f"order_id={info.get('order_id')} status={info.get('status')}")
+                  f"order_id={info.get('order_id')} status={info.get('status')} "
+                  f"filled={info.get('fill_count','?')}/{count}")
             _record_order(args.bet_log, g, x['pick'], info, count)
-            if info.get("order_id"):                       # report fill outcome
-                o = get_kalshi_order(env, info["order_id"]) or {}
-                print(f"       fill status: {o.get('status', info.get('status','?'))}  "
-                      f"filled={o.get('fill_count', o.get('taker_fill_count','?'))}/{count}")
             if canary:                                     # one-shot: stop after the single test order
                 json.dump({"order_id": info.get("order_id"), "ticker": ticker,
                            "placed_at": datetime.fromtimestamp(time.time(), timezone.utc).isoformat()},
