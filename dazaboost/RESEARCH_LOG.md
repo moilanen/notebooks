@@ -127,7 +127,32 @@ Skip favorites (no edge) and totals/spreads. Enter at/near the closing line with
 | `comeback_scan.py` → `data/comeback.csv` (+ `comeback_cache/`) | H9: ≤X¢ comeback rates |
 | `comeback_state.py` → `data/comeback_state.csv` | H11: PBP-joined live state at dip |
 | `build_we.py` → `data/win_expectancy.csv` (+ `pbp_cache/`, `sched_cache/`) | H12: win-expectancy table |
-| `mlb_value_bets.py` | production screener/alerter/settler |
+| `mlb_value_bets.py` | production screener/alerter/settler/**live-trader**/comeback-watcher |
+| `data/comeback_paper.csv` (+ `comeback_logged.json`) | comeback strategy PAPER log (Phase 1–2) |
+| `*.plist` (in repo + `~/Library/LaunchAgents/`) | caffeinate · mlbpreview · mlbvaluebets · comebackwatch |
+
+## Comeback strategy (in-game "buy the dip") — PAPER ONLY, under validation
+**Hypothesis:** buy a model-dog when its Kalshi price dips ≤10¢ during the game. **Status: not a
+validated edge.** H9–H12 showed the comeback rate at ≤10¢ (~17%) *equals* the win-expectancy
+baseline for the same inning+deficit, and ¼-Kelly ≈ 0%. The flat version is −EV after fees, so it is
+**never run live**. The only potentially-edged variant: buy only when **WE(inning,deficit) > price**
+(market lagging true odds) — this is what we're paper-testing.
+
+**Implementation (Phases):**
+- **P1–P2 (built):** `--comeback-watch` mode + `ai.dazaboost.comebackwatch.plist` (every 2 min,
+  paper only). Logs each model-dog that dips ≤`--comeback-threshold` (0.10) during a LIVE game to
+  `data/comeback_paper.csv` with the live win-expectancy (`load_win_expectancy()` over
+  `win_expectancy.csv`) and `edge = WE − price − fee`. Game state via MLB statsapi
+  (`mlb_gamepk`/`mlb_live_state`). **Places no orders.** Dedup via `data/comeback_logged.json`.
+- **P3 (gate):** `python mlb_value_bets.py --settle` also runs `settle_comeback()` → prints paper ROI
+  for ALL dips vs the **WE>price** subset. Go-live gate: WE>price subset shows positive ROI with CI
+  lower bound > 0 over ≥40 settled crossings.
+- **P4 (only if P3 passes):** reuse `place_kalshi_order`; tiny fractional-Kelly on the WE−price edge.
+  Not built — deliberately gated behind validation.
+
+**Known hard parts:** liquidity at ≤10¢ is thin (may not fill); 2-min polling catches *sustained*
+dips, not transient ones (fine for paper validation, would need a faster daemon to actually trade);
+fees are proportionally huge at extreme prices.
 
 ## Open / next
 - Validate the dog edge **out-of-sample** (live `bet_log.csv` + `--settle`) — the one thing the

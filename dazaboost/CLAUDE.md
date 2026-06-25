@@ -22,9 +22,15 @@ showed no usable edge.
 - Kalshi market data is public (no auth); Dazaboost games API is public.
 
 ## Main entry point: `mlb_value_bets.py`
-Daily Kalshi value-bet screener. Modes: default daily card · `--preview` (morning slate + CT times) ·
-`--pregame-window N` (poll/alert each game ~N min pre-game) · `--settle` (live ROI vs backtest) ·
-`--dry-run` · `--slack`/`--slack-always`. Sizes off live Kalshi balance; Slack shows **% of bankroll
-only**. Two launchd jobs (`*.plist`) drive it: 9am CT preview + every-10-min poller.
+Daily Kalshi value-bet screener + live trader. Modes: default daily card · `--preview` (morning
+slate + CT times) · `--pregame-window N` (poll/alert each game ~N min pre-game) · `--live`
+(REAL orders for qualifying dogs; `--live-test` = 1-contract canary first) · `--settle` (live ROI
+vs backtest) · `--comeback-watch` (PAPER-only in-game dip logger, see RESEARCH_LOG) · `--dry-run` ·
+`--slack`/`--slack-always`. Sizes off live Kalshi balance (signed RSA); Slack shows **% of bankroll
+only**. Orders use the V2 endpoint (`external-api.kalshi.com /portfolio/events/orders`; `side:"bid"`=buy YES,
+`side:"ask"`=sell YES; `client_order_id` must be alphanumeric/dash — no `@`; **prices must be whole
+cents** — 0.965 is rejected `invalid_price`). After a live buy fills, a `--take-profit` (default 96¢)
+resting SELL closes the position. Four launchd jobs (`*.plist`): caffeinate
+(11am–midnight CT) · 9am preview · every-10-min live poller · every-2-min comeback paper-watch.
 
 See `RESEARCH_LOG.md` → "Files" table for what every script/CSV is.

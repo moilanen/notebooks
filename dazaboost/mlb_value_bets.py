@@ -160,14 +160,16 @@ def get_kalshi_order(env, order_id):
 KALSHI_ORDER_HOST = "https://external-api.kalshi.com"
 KALSHI_ORDER_PATH = "/trade-api/v2/portfolio/events/orders"   # V2 create-order
 
-def place_kalshi_order(env, ticker, price_dollars, count, client_order_id):
-    """Place a LIMIT BUY-YES order via the V2 endpoint. BUY YES = side 'bid'.
-    Limit at `price_dollars`, immediate-or-cancel (fill at our price now or skip — no stale rests).
+def place_kalshi_order(env, ticker, price_dollars, count, client_order_id,
+                       side="bid", time_in_force="immediate_or_cancel"):
+    """Place a LIMIT order via the V2 endpoint. side 'bid' = BUY YES, 'ask' = SELL YES.
+    `price_dollars` is always the YES-leg price. Default is an immediate-or-cancel buy (fill now or
+    skip). For a resting take-profit sell use side='ask', time_in_force='good_till_canceled'.
     Idempotent via client_order_id. Returns (ok, info)."""
-    body = {"ticker": ticker, "side": "bid",
+    body = {"ticker": ticker, "side": side,
             "count": f"{int(count)}.00",                 # fixed-point string, 2 dp
-            "price": f"{price_dollars:.4f}",             # USD fixed-point string
-            "time_in_force": "immediate_or_cancel",
+            "price": f"{price_dollars:.4f}",             # USD fixed-point string (YES leg)
+            "time_in_force": time_in_force,
             "self_trade_prevention_type": "taker_at_cross",
             "client_order_id": client_order_id}
     try:
@@ -294,10 +296,13 @@ def _read_bet_log(path):
     with open(path, newline="") as f:
         return list(csv.DictReader(f))
 
-def _write_bet_log(path, rows):
+def _write_bet_log_cols(path, rows, cols):
     with open(path, "w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=BET_LOG_COLS); w.writeheader()
-        for r in rows: w.writerow({k: r.get(k, "") for k in BET_LOG_COLS})
+        w = csv.DictWriter(f, fieldnames=cols); w.writeheader()
+        for r in rows: w.writerow({k: r.get(k, "") for k in cols})
+
+def _write_bet_log(path, rows):
+    _write_bet_log_cols(path, rows, BET_LOG_COLS)
 
 def log_bets(path, bets, bankroll, kelly_frac):
     """Append newly-fired bets as status=open, skipping games already logged."""
@@ -467,6 +472,21 @@ def place_live_orders(args, bets):
                   f"order_id={info.get('order_id')} status={info.get('status')} "
                   f"filled={info.get('fill_count','?')}/{count}")
             _record_order(args.bet_log, g, x['pick'], info, count)
+            # take-profit: rest a SELL of the FILLED quantity at the take-profit price
+            tp = getattr(args, "take_profit", 0.965)
+            try:
+                filled = int(float(info.get("fill_count") or 0))
+            except (TypeError, ValueError):
+                filled = 0
+            if tp and tp > 0 and filled >= 1:
+                tcents = int(round(tp * 100))            # Kalshi requires whole-cent prices
+                ok2, info2 = place_kalshi_order(env, ticker, tcents / 100.0, filled, coid + "-tp",
+                                                side="ask", time_in_force="good_till_canceled")
+                if ok2:
+                    print(f"       ↳ take-profit: SELL {filled} @ {tcents}c (resting) "
+                          f"order_id={info2.get('order_id')}")
+                else:
+                    print(f"       ↳ ! take-profit order failed: {info2.get('error')}", file=sys.stderr)
             if canary:                                     # one-shot: stop after the single test order
                 json.dump({"order_id": info.get("order_id"), "ticker": ticker,
                            "placed_at": datetime.fromtimestamp(time.time(), timezone.utc).isoformat()},
@@ -488,6 +508,135 @@ def _record_order(path, g, pick, info, count):
             r["order_status"] = info.get("status", "")
             break
     _write_bet_log(path, rows)
+
+
+# ---------------------------------------------------------------- comeback (in-game dip) PAPER logger
+# Phase 1-2 of the comeback strategy: log model-dog contracts that dip <= threshold intraday, with
+# the live win-expectancy for the game state. PAPER ONLY — places no orders. The flat "buy any dip"
+# has no edge (rate == win-expectancy); the test is whether WE > price (market lagging) ever pays.
+COMEBACK_LOG = "data/comeback_paper.csv"
+COMEBACK_STATE = "data/comeback_logged.json"
+COMEBACK_COLS = ["logged_at_utc", "gameDate", "gameId", "dog", "ticker", "price_at_cross",
+                 "inning", "dog_runs", "opp_runs", "deficit", "win_expectancy", "edge_cents",
+                 "we_positive", "status", "result", "settled_at_utc"]
+
+def load_win_expectancy(path="data/win_expectancy.csv"):
+    """Return we(inning, team_margin) -> P(that team wins), pooled over both teams & halves."""
+    from collections import defaultdict
+    wins, cnt = defaultdict(float), defaultdict(float)
+    if os.path.exists(path):
+        for r in csv.DictReader(open(path)):
+            inn, lead, n, hwr = int(r["inning"]), int(r["home_lead"]), int(r["n"]), float(r["home_win_rate"])
+            wins[(inn, lead)] += hwr * n; cnt[(inn, lead)] += n          # home perspective
+            wins[(inn, -lead)] += (1 - hwr) * n; cnt[(inn, -lead)] += n  # away perspective
+    def we(inning, margin):
+        inning = min(inning, 10); margin = max(-9, min(9, margin))
+        n = cnt.get((inning, margin), 0)
+        return (wins[(inning, margin)] / n) if n else None
+    return we
+
+def mlb_gamepk(datestr_iso, home, away):
+    """datestr_iso = YYYY-MM-DD. Match Dazaboost full team names to a statsapi gamePk."""
+    try:
+        d = http_json(f"https://statsapi.mlb.com/api/v1/schedule?sportId=1&date={datestr_iso}")
+    except Exception:
+        return None
+    for dt in d.get("dates", []):
+        for g in dt["games"]:
+            if g["teams"]["home"]["team"]["name"] == home and g["teams"]["away"]["team"]["name"] == away:
+                return g["gamePk"]
+    return None
+
+def mlb_live_state(gamepk):
+    """Return (abstract_state, inning, away_runs, home_runs) or None. abstract_state in Preview/Live/Final."""
+    try:
+        d = http_json(f"https://statsapi.mlb.com/api/v1.1/game/{gamepk}/feed/live")
+        st = d["gameData"]["status"]["abstractGameState"]
+        ls = d["liveData"]["linescore"]
+        inn = ls.get("currentInning") or 1
+        a = ls["teams"]["away"].get("runs", 0) or 0
+        h = ls["teams"]["home"].get("runs", 0) or 0
+        return st, inn, a, h
+    except Exception:
+        return None
+
+def run_comeback_watch(args, kmarkets):
+    """Poll model-dog games; when the dog's price first dips <= threshold during a LIVE game, log a
+    PAPER entry with the win-expectancy for the state. No orders. Run frequently (~30-60s) via daemon."""
+    thr = args.comeback_threshold
+    today = (datetime.now(EASTERN).date() if EASTERN else date.today())
+    games, _ = fetch_week_with_fallback(args.week or week_for(today))
+    ds = today.strftime("%Y%m%d"); iso = today.isoformat()
+    we = load_win_expectancy()
+    state = load_state(COMEBACK_STATE)
+    rows = _read_bet_log(COMEBACK_LOG) if os.path.exists(COMEBACK_LOG) else []
+    logged, dipped = 0, 0
+    for g in games:
+        if g.get("gameDate") != ds or g.get("casinoSpread") is None:
+            continue
+        pick = predicted_winner(g)
+        if pick is None or casino_favorite(g) == pick:        # contrarian dogs only
+            continue
+        key = f"{g['gameDate']}:{g['gameId']}"
+        if key in state:
+            continue
+        mkt = market_for(kmarkets, TEAM2ABBR.get(pick), datecode_for(g))
+        ask = float(mkt["yes_ask_dollars"]) if mkt and mkt.get("yes_ask_dollars") else None
+        if ask is None or ask > thr:                          # not dipped below threshold
+            continue
+        dipped += 1
+        gpk = mlb_gamepk(iso, g["homeTeamName"], g["awayTeamName"])
+        live = mlb_live_state(gpk) if gpk else None
+        if not live or live[0] != "Live":                     # only log in-game dips; retry next pass
+            continue
+        _, inning, a_runs, h_runs = live
+        dog_home = (pick == g["homeTeamName"])
+        dog_runs, opp_runs = (h_runs, a_runs) if dog_home else (a_runs, h_runs)
+        deficit = opp_runs - dog_runs
+        we_val = we(inning, dog_runs - opp_runs)
+        edge = (we_val - ask - kalshi_fee(ask)) if we_val is not None else None
+        now = datetime.fromtimestamp(time.time(), timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        rows.append({"logged_at_utc": now, "gameDate": g["gameDate"], "gameId": g["gameId"],
+                     "dog": pick, "ticker": mkt["ticker"], "price_at_cross": f"{ask:.4f}",
+                     "inning": inning, "dog_runs": dog_runs, "opp_runs": opp_runs, "deficit": deficit,
+                     "win_expectancy": f"{we_val:.3f}" if we_val is not None else "",
+                     "edge_cents": f"{edge*100:.1f}" if edge is not None else "",
+                     "we_positive": (edge is not None and edge > 0), "status": "open",
+                     "result": "", "settled_at_utc": ""})
+        state.add(key); logged += 1
+    if logged:
+        _write_bet_log_cols(COMEBACK_LOG, rows, COMEBACK_COLS)
+        save_state(COMEBACK_STATE, state)
+    stamp = datetime.fromtimestamp(time.time(), timezone.utc).strftime("%Y-%m-%d %H:%MZ")
+    print(f"[{stamp}] comeback-watch (<= {int(thr*100)}c): {dipped} dog(s) dipped, {logged} new paper entr(ies)")
+
+def settle_comeback():
+    """Fill outcomes for the comeback paper log from Kalshi settlements + print WE-filter ROI."""
+    if not os.path.exists(COMEBACK_LOG):
+        print("No comeback paper log yet."); return
+    rows = _read_bet_log(COMEBACK_LOG)
+    results = fetch_settled_results()
+    now = datetime.fromtimestamp(time.time(), timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    for r in rows:
+        if r.get("status") != "open": continue
+        gd = r["gameDate"]; dc = f"{gd[2:4]}{MON3[int(gd[4:6])]}{int(gd[6:8]):02d}"
+        res = results.get((dc, r["ticker"].rsplit("-", 1)[-1]))
+        if res is None: continue
+        r["status"] = "won" if res == "yes" else "lost"; r["result"] = res; r["settled_at_utc"] = now
+    _write_bet_log_cols(COMEBACK_LOG, rows, COMEBACK_COLS)
+    settled = [r for r in rows if r.get("status") in ("won", "lost")]
+    we_pos = [r for r in settled if str(r.get("we_positive")) == "True"]
+    print(f"=== Comeback paper log ({COMEBACK_LOG}) ===")
+    print(f"  logged: {len(rows)} | settled: {len(settled)}")
+    def summ(label, rs):
+        if not rs: print(f"  {label}: n=0"); return
+        wins = sum(1 for r in rs if r["status"] == "won")
+        # paper ROI buying at price_at_cross, net of fee
+        pnl = sum(((1.0 if r["status"]=="won" else 0.0) - float(r["price_at_cross"]) - kalshi_fee(float(r["price_at_cross"]))) for r in rs)
+        stake = sum(float(r["price_at_cross"]) for r in rs)
+        print(f"  {label}: n={len(rs)} win={wins/len(rs):.0%} paperROI={pnl/stake*100:+.0f}%")
+    summ("ALL dips", settled)
+    summ("WE>price dips (the edge test)", we_pos)
 
 
 def run_pregame(args, kmarkets):
@@ -575,6 +724,14 @@ def main():
                     help="One-shot canary: place a single 1-contract real order on the next qualifying "
                          "dog, report the fill, then revert to full-size live betting (sentinel: "
                          "data/live_test_done.json — delete it to re-arm the canary).")
+    ap.add_argument("--comeback-watch", action="store_true",
+                    help="PAPER ONLY: log model-dog contracts that dip below --comeback-threshold during "
+                         "a live game, with win-expectancy for the state. Places no orders. Run frequently.")
+    ap.add_argument("--comeback-threshold", type=float, default=0.10,
+                    help="price (dollars) below which a live dog dip is logged (default 0.10 = 10c)")
+    ap.add_argument("--take-profit", type=float, default=0.96,
+                    help="after a live buy fills, rest a SELL to close at this price, rounded to a whole "
+                         "cent (Kalshi requires integer cents; default 0.96 = 96c; 0 disables)")
     args = ap.parse_args()
     if (args.live or args.live_test) and not getattr(args, "dry_run", False):
         print("    ⚠️  LIVE TRADING ENABLED — real Kalshi orders will be placed for qualifying bets")
@@ -582,6 +739,16 @@ def main():
     # Settle/report mode: update outcomes for logged bets and print realized ROI.
     if args.settle:
         settle_and_report(args.bet_log)
+        settle_comeback()
+        return
+
+    # Comeback paper logger (Phase 1-2): log live in-game dips of model-dogs. No orders.
+    if args.comeback_watch:
+        try:
+            kmarkets = http_json(KALSHI_MKTS)["markets"]
+        except Exception as e:
+            print(f"  ! Kalshi fetch failed: {e}", file=sys.stderr); kmarkets = []
+        run_comeback_watch(args, kmarkets)
         return
 
     # Preview mode: full-slate morning heads-up with game times. Writes nothing; % sizing only.

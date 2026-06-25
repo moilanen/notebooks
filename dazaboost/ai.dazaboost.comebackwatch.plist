@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>ai.dazaboost.comebackwatch</string>
+
+    <!-- PAPER ONLY (Phase 1-2 of the comeback strategy). Every 2 min, logs model-dog contracts
+         that dip <=10c during a LIVE game, with the win-expectancy for the state. Places NO orders.
+         Runs that find no live dip exit cheaply (2 HTTP calls). Validates whether WE>price ever pays
+         before any live money is risked. -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/jake/Dropbox/sbx/notebook/venv/bin/python3</string>
+        <string>/Users/jake/Dropbox/sbx/notebook/dazaboost/mlb_value_bets.py</string>
+        <string>--comeback-watch</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/jake/Dropbox/sbx/notebook/dazaboost</string>
+
+    <key>StartInterval</key>
+    <integer>120</integer>
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>/Users/jake/Dropbox/sbx/notebook/dazaboost/data/comebackwatch.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/jake/Dropbox/sbx/notebook/dazaboost/data/comebackwatch.log</string>
+</dict>
+</plist>
