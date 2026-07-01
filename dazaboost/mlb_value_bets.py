@@ -113,6 +113,28 @@ def kalshi_private_key(env):
     from cryptography.hazmat.primitives.serialization import load_pem_private_key
     return load_pem_private_key(pem.encode(), password=None)
 
+def kalshi_accounts(env):
+    """Return [(name, account_env), ...] — one entry per Kalshi account to trade on, primary first.
+
+    The primary account uses the base `api_key_kalshi` / `KALSHI_PRIVATE_KEY_PATH`. Additional
+    accounts are auto-discovered from any `api_key_kalshi_<name>` entries in .env, each paired with
+    its own `KALSHI_PRIVATE_KEY_PATH_<name>`. Each account gets an env-like dict (a copy of env with
+    those two keys overridden) so every signed helper — kalshi_signed, kalshi_balance_dollars,
+    place_kalshi_order — works unchanged when handed that dict. Add more accounts by adding more
+    `api_key_kalshi_<name>` + `KALSHI_PRIVATE_KEY_PATH_<name>` pairs; no code change needed."""
+    accounts = [("primary", env)]
+    for k in sorted(env):
+        if not (k.startswith("api_key_kalshi_") and env[k]):
+            continue
+        name = k[len("api_key_kalshi_"):]
+        acct = dict(env)
+        acct["api_key_kalshi"] = env[k]
+        path = env.get(f"KALSHI_PRIVATE_KEY_PATH_{name}")
+        if path:
+            acct["KALSHI_PRIVATE_KEY_PATH"] = path
+        accounts.append((name, acct))
+    return accounts
+
 def kalshi_signed(method, path, env, body=None, host="https://api.elections.kalshi.com"):
     """Signed Kalshi request (GET/POST). `path` includes /trade-api/v2/... Returns parsed JSON.
     Raises on failure (callers decide how to handle)."""
@@ -439,39 +461,58 @@ def run_preview(args, kmarkets):
 
 LIVE_TEST_SENTINEL = "data/live_test_done.json"
 
-def place_live_orders(args, bets):
-    """Auto-submit LIMIT BUY YES orders for qualifying dog bets. Idempotent; halts on first error.
-    Sizing: floor(stake/ask) contracts at the model's ask price (the price EV was computed on).
+def account_sentinel(name):
+    """Per-account canary sentinel path, so each account fires its 1-contract test exactly once."""
+    return LIVE_TEST_SENTINEL if name == "primary" else f"data/live_test_done_{name}.json"
 
-    --live-test canary: until the sentinel exists, the FIRST qualifying bet is placed at exactly
-    1 contract, its fill is reported, the sentinel is written, and the run stops — proving the
-    pipeline end-to-end. Afterwards (sentinel present) it reverts to normal full-size live betting."""
-    env = load_env()
+def place_live_orders(args, bets):
+    """Auto-submit LIMIT BUY YES orders for qualifying dog bets on EVERY configured Kalshi account.
+    Each account is sized off ITS OWN live balance. Idempotent; halts a given account on first error
+    (the other accounts still run).
+
+    --live-test canary: per account, until that account's sentinel exists, its FIRST qualifying bet
+    is placed at exactly 1 contract, the fill reported, the sentinel written, and that account stops
+    — proving the pipeline end-to-end. Afterwards (sentinel present) it reverts to full-size betting."""
+    accounts = kalshi_accounts(load_env())
+    if len(accounts) > 1:
+        print(f"    placing on {len(accounts)} Kalshi accounts: " + ", ".join(n for n, _ in accounts))
+    for name, env in accounts:
+        _place_account_orders(args, bets, name, env)
+
+def _place_account_orders(args, bets, name, env):
+    """Place the qualifying bets on a single account (env carries that account's key id + key path)."""
     if kalshi_private_key(env) is None:
-        print("    ! live mode set but no Kalshi private key (KALSHI_PRIVATE_KEY_PATH) — NO orders placed",
+        print(f"    ! [{name}] live mode set but no Kalshi private key — NO orders placed for this account",
               file=sys.stderr)
         return
-    canary = getattr(args, "live_test", False) and not os.path.exists(LIVE_TEST_SENTINEL)
+    bal = kalshi_balance_dollars(env)
+    bankroll = bal if bal is not None else args.bankroll
+    print(f"    [{name}] bankroll ${bankroll:,.2f}"
+          + ("" if bal is not None else "  (no live balance — fallback)"))
+    canary = getattr(args, "live_test", False) and not os.path.exists(account_sentinel(name))
     for x in bets:
         ticker = x.get("ticker")
         if not ticker:
-            print(f"    ! no Kalshi ticker for {x['pick']} — skipped", file=sys.stderr); continue
-        stake = x["kelly"] * args.bankroll
+            print(f"    ! [{name}] no Kalshi ticker for {x['pick']} — skipped", file=sys.stderr); continue
+        stake = x["kelly"] * bankroll
         price = x["ask"]
         count = 1 if canary else (int(stake / price) if price > 0 else 0)
         if count < 1:
-            print(f"    · {x['pick']}: stake ${stake:.2f} < 1 contract — skipped"); continue
+            print(f"    · [{name}] {x['pick']}: stake ${stake:.2f} < 1 contract — skipped"); continue
         g = x["game"]
         safe_gid = g["gameId"].replace("@", "").replace("_", "-")   # Kalshi rejects '@' in client_order_id
         coid = f"daza-{safe_gid}-{TEAM2ABBR.get(x['pick'],'?')}"     # idempotent, alphanumeric+dash only
+        if name != "primary":
+            coid = f"{coid}-{name}"          # distinct client_order_id namespace per account
         cents = int(round(price * 100))
         tag = "🐤 CANARY 1-contract TEST" if canary else "✅ LIVE ORDER"
         ok, info = place_kalshi_order(env, ticker, price, count, coid)
         if ok:
-            print(f"    {tag}: BUY {count} {ticker} @ {cents}c (${count*price:.2f}) "
+            print(f"    [{name}] {tag}: BUY {count} {ticker} @ {cents}c (${count*price:.2f}) "
                   f"order_id={info.get('order_id')} status={info.get('status')} "
                   f"filled={info.get('fill_count','?')}/{count}")
-            _record_order(args.bet_log, g, x['pick'], info, count)
+            if name == "primary":
+                _record_order(args.bet_log, g, x['pick'], info, count)
             # take-profit: rest a SELL of the FILLED quantity at the take-profit price
             tp = getattr(args, "take_profit", 0.965)
             try:
@@ -483,20 +524,20 @@ def place_live_orders(args, bets):
                 ok2, info2 = place_kalshi_order(env, ticker, tcents / 100.0, filled, coid + "-tp",
                                                 side="ask", time_in_force="good_till_canceled")
                 if ok2:
-                    print(f"       ↳ take-profit: SELL {filled} @ {tcents}c (resting) "
+                    print(f"       ↳ [{name}] take-profit: SELL {filled} @ {tcents}c (resting) "
                           f"order_id={info2.get('order_id')}")
                 else:
-                    print(f"       ↳ ! take-profit order failed: {info2.get('error')}", file=sys.stderr)
+                    print(f"       ↳ ! [{name}] take-profit order failed: {info2.get('error')}", file=sys.stderr)
             if canary:                                     # one-shot: stop after the single test order
-                json.dump({"order_id": info.get("order_id"), "ticker": ticker,
+                json.dump({"order_id": info.get("order_id"), "ticker": ticker, "account": name,
                            "placed_at": datetime.fromtimestamp(time.time(), timezone.utc).isoformat()},
-                          open(LIVE_TEST_SENTINEL, "w"))
-                print("    🐤 canary placed — full-size live betting active from the next qualifying bet.")
+                          open(account_sentinel(name), "w"))
+                print(f"    🐤 [{name}] canary placed — full-size live betting active from the next qualifying bet.")
                 break
         else:
-            print(f"    ! ORDER FAILED for {ticker}: {info.get('error')} — HALTING further orders",
+            print(f"    ! [{name}] ORDER FAILED for {ticker}: {info.get('error')} — HALTING further orders for this account",
                   file=sys.stderr)
-            break                                          # halt-on-error: don't keep firing
+            break                                          # halt-on-error: don't keep firing on this account
 
 def _record_order(path, g, pick, info, count):
     """Stamp the matching bet-log row with the live order id/status. Leaves status='open'

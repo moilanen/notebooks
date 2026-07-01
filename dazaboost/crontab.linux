@@ -1,0 +1,21 @@
+# dazaboost — Linux cron jobs (replaces the Mac launchd *.plist jobs).
+# The Mac `caffeinate` job is intentionally dropped: an always-on Linux host never sleeps.
+# Install with:  crontab /home/ec2-user/dazaboost/dazaboost/crontab.linux
+# Inspect with:  crontab -l        Remove with:  crontab -r
+#
+# Host TZ is already America/Chicago; CRON_TZ is set explicitly so the 9am preview
+# stays at 9am CT even if the host timezone ever changes.
+CRON_TZ=America/Chicago
+DAZA=/home/ec2-user/dazaboost/dazaboost
+PY=/home/ec2-user/dazaboost/venv/bin/python3
+
+# 9:00am CT — morning preview (full slate + expected dog bets) to Slack. Writes no state.
+0 9 * * *   cd $DAZA && $PY mlb_value_bets.py --preview --slack >> $DAZA/data/mlbpreview.log 2>&1
+
+# Every 10 min — pregame poller. Evaluates each game once ~25-35 min pre-pitch, places the
+# qualifying contrarian-dog bet (LIVE, 1-contract canary first), dedupes, Slacks the play.
+# Off-hours polls are cheap no-ops (0 games in window).
+*/10 * * * *  cd $DAZA && $PY mlb_value_bets.py --pregame-window 35 --slack --live --live-test >> $DAZA/data/mlbvaluebets.log 2>&1
+
+# Every 2 min — comeback paper-watch (PAPER ONLY, places no orders). Logs model-dog dips <=10c.
+*/2 * * * *   cd $DAZA && $PY mlb_value_bets.py --comeback-watch >> $DAZA/data/comebackwatch.log 2>&1
